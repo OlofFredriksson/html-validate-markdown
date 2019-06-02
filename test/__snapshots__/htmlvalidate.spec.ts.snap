@@ -1,0 +1,52 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`should find errors in "markdown.md" 1`] = `Array []`;
+
+exports[`should find errors in "multiline-invalid.md" 1`] = `
+Array [
+  Object {
+    "errorCount": 3,
+    "filePath": "test/multiline-invalid.md",
+    "messages": Array [
+      Object {
+        "column": 1,
+        "line": 7,
+        "message": "failed to tokenize \\"</div>\\", expected attribute, \\">\\" or \\"/>\\".",
+        "offset": 100,
+        "ruleId": undefined,
+        "severity": 2,
+        "size": 0,
+      },
+      Object {
+        "column": 3,
+        "context": Object {
+          "attribute": "type",
+          "element": "button",
+        },
+        "line": 12,
+        "message": "<button> is missing required attribute \\"type\\"",
+        "offset": 8,
+        "ruleId": "element-required-attributes",
+        "severity": 2,
+        "size": 6,
+      },
+      Object {
+        "column": 11,
+        "context": undefined,
+        "line": 12,
+        "message": "Element <div> is not permitted as content in <button>",
+        "offset": 16,
+        "ruleId": "element-permitted-content",
+        "severity": 2,
+        "size": 3,
+      },
+    ],
+    "source": "<div something=\\"row\\">
+    <button type=\\"invalid\\">
+        Button not correctly clossed
+    </button
+</div>",
+    "warningCount": 0,
+  },
+]
+`;

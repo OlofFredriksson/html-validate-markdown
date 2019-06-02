@@ -1,0 +1,64 @@
+{
+  "name": "html-validate-markdown",
+  "version": "0.0.1",
+  "main": "index.js",
+  "scripts": {
+    "build": "tsc --build",
+    "lint": "eslint *.js src/*.ts test/*.js test/*.ts",
+    "postversion": "git push --follow-tags",
+    "prettier:check": "prettier '**/*.{ts,js,json,md,scss}' --list-different",
+    "prettier:write": "prettier '**/*.{ts,js,json,md,scss}' --write",
+    "test": "jest",
+    "version": "sv-update-changelog -i && git add CHANGELOG.md"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged"
+    }
+  },
+  "lint-staged": {
+    "*.{ts,js,json,md,scss}": [
+      "prettier --write",
+      "git add"
+    ]
+  },
+  "author": "Olof",
+  "license": "MIT",
+  "devDependencies": {
+    "@sidvind/build-scripts": "^1.0.0",
+    "@types/estree": "0.0.39",
+    "@types/jest": "^24.0.6",
+    "@types/node": "^11.9.5",
+    "@typescript-eslint/eslint-plugin": "^1.4.1",
+    "@typescript-eslint/parser": "^1.4.1",
+    "eslint": "^5.14.1",
+    "eslint-config-prettier": "^4.0.0",
+    "eslint-config-sidvind": "^1.3.2",
+    "eslint-plugin-jest": "^22.3.0",
+    "eslint-plugin-prettier": "^3.0.1",
+    "html-validate": "^0.24.1",
+    "husky": "^1.3.1",
+    "jest": "^24.1.0",
+    "lint-staged": "^8.1.4",
+    "prettier": "^1.16.4",
+    "ts-jest": "^24.0.0",
+    "typescript": "^3.3.3333"
+  },
+  "peerDependencies": {
+    "html-validate": ">=0.24.1"
+  },
+  "jest": {
+    "collectCoverage": true,
+    "collectCoverageFrom": [
+      "src/**/*.ts"
+    ],
+    "coverageReporters": [
+      "text",
+      "text-summary"
+    ],
+    "testRegex": "(/__tests__/.+|(\\.|/)(test|spec))\\.tsx?$",
+    "transform": {
+      "^.+\\.tsx?$": "ts-jest"
+    }
+  }
+}

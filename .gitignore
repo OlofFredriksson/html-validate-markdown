@@ -1,0 +1,5 @@
+# Remember to keep in sync with .npmignore
+
+/build/
+/node_modules/
+*.tgz

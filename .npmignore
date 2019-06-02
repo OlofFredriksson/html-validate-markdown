@@ -1,0 +1,7 @@
+# Remember to keep in sync with .gitignore
+
+/*.tgz
+/.*
+/node_modules/
+/src/
+/test/
