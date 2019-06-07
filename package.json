@@ -21,6 +21,13 @@
       "git add"
     ]
   },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/OlofFredriksson/html-validate-markdown.git"
+  },
+  "bugs": {
+    "url": "https://github.com/OlofFredriksson/html-validate-markdown/issues"
+  },
   "author": "Olof",
   "license": "MIT",
   "devDependencies": {
