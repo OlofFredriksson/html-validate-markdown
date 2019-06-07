@@ -10,6 +10,6 @@
 
 ```html
 <div>
-	<button><div>div in button</div></button>
+    <button><div>div in button</div></button>
 </div>
 ```

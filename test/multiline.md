@@ -2,9 +2,9 @@
 
 ```html
 <div class="row">
-	<button type="button">
-		Button
-		<span class="sr-only">Open in new page</span>
-	</button>
+    <button type="button">
+        Button
+        <span class="sr-only">Open in new page</span>
+    </button>
 </div>
 ```
