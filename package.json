@@ -4,7 +4,7 @@
   "main": "index.js",
   "scripts": {
     "build": "tsc --build",
-    "lint": "eslint *.js src/*.ts test/*.js test/*.ts",
+    "lint": "eslint src/*.ts test/*.ts",
     "postversion": "git push --follow-tags",
     "prettier:check": "prettier '**/*.{ts,js,json,md,scss}' --list-different",
     "prettier:write": "prettier '**/*.{ts,js,json,md,scss}' --write",
