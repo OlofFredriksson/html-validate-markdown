@@ -4,6 +4,13 @@
 
 Transform Html blocks in Markdown files for use with [html-validate].
 
+````html
+<div>
+    This is a html block. View Source to see me. Remember to always add ```html
+    before your code in order to transform it.
+</div>
+````
+
 [html-validate]: https://www.npmjs.com/package/html-validate
 
 ## Usage
