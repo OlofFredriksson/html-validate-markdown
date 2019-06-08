@@ -10,9 +10,9 @@ Array [
     "messages": Array [
       Object {
         "column": 1,
-        "line": 7,
-        "message": "failed to tokenize \\"</div>\\", expected attribute, \\">\\" or \\"/>\\".",
-        "offset": 100,
+        "line": 8,
+        "message": "failed to tokenize \\"</div>\\\\n\\", expected attribute, \\">\\" or \\"/>\\".",
+        "offset": 101,
         "ruleId": undefined,
         "severity": 2,
         "size": 0,
@@ -23,9 +23,9 @@ Array [
           "attribute": "type",
           "element": "button",
         },
-        "line": 12,
+        "line": 13,
         "message": "<button> is missing required attribute \\"type\\"",
-        "offset": 11,
+        "offset": 12,
         "ruleId": "element-required-attributes",
         "severity": 2,
         "size": 6,
@@ -33,19 +33,21 @@ Array [
       Object {
         "column": 14,
         "context": undefined,
-        "line": 12,
+        "line": 13,
         "message": "Element <div> is not permitted as content in <button>",
-        "offset": 19,
+        "offset": 20,
         "ruleId": "element-permitted-content",
         "severity": 2,
         "size": 3,
       },
     ],
-    "source": "<div something=\\"row\\">
+    "source": "
+<div something=\\"row\\">
     <button type=\\"invalid\\">
         Button not correctly clossed
     </button
-</div>",
+</div>
+",
     "warningCount": 0,
   },
 ]

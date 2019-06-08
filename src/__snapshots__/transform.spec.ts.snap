@@ -1,0 +1,13 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`should extract html blocks from markdown files 1`] = `
+"
+<button type=\\"submit\\">Button</button>
+"
+`;
+
+exports[`should extract html blocks from markdown files 2`] = `
+"
+<a href=\\"http://\\" title=\\"link\\">link</a>
+"
+`;

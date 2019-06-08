@@ -20,10 +20,6 @@ function findLocation(
     return [line, 1];
 }
 
-function trimTemplate(str: string): string {
-    return str.trim();
-}
-
 function* findTemplates(filename: string): Iterable<Source> {
     const source = fs.readFileSync(filename, "utf-8");
     const htmlBlock = /^(```html)([^]*?)^```/gm;
@@ -36,7 +32,7 @@ function* findTemplates(filename: string): Iterable<Source> {
             match.index,
             preamble.length
         );
-        yield { data: trimTemplate(data), filename, line, column };
+        yield { data: data, filename, line, column };
     }
 }
 
