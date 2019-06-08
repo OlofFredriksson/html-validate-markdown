@@ -1,6 +1,6 @@
 # html-validate-markdown
 
-[![CircleCI](https://circleci.com/gh/OlofFredriksson/html-validate-markdown.svg?style=svg&circle-token=561e1c028dbdc112bf9928e54b67eab4c717e00e)](https://circleci.com/gh/OlofFredriksson/html-validate-markdown)
+[![CircleCI](https://circleci.com/gh/OlofFredriksson/html-validate-markdown.svg?style=svg)](https://circleci.com/gh/OlofFredriksson/html-validate-markdown)
 
 Transform Html blocks in Markdown files for use with [html-validate].
 
