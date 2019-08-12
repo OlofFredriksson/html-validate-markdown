@@ -1,8 +1,8 @@
 # html-validate-markdown
 
-[![CircleCI](https://circleci.com/gh/OlofFredriksson/html-validate-markdown.svg?style=svg)](https://circleci.com/gh/OlofFredriksson/html-validate-markdown)
+> Transform Html blocks in Markdown files for use with [html-validate].
 
-Transform Html blocks in Markdown files for use with [html-validate].
+[![CircleCI](https://circleci.com/gh/OlofFredriksson/html-validate-markdown.svg?style=shield)](https://circleci.com/gh/OlofFredriksson/html-validate-markdown) [![npm](https://img.shields.io/npm/v/html-validate-markdown)](https://www.npmjs.com/package/html-validate-markdown)
 
 ````html
 <div>
