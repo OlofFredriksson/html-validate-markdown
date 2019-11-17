@@ -13,7 +13,7 @@ Array [
         "line": 8,
         "message": "failed to tokenize \\"</div>\\\\n\\", expected attribute, \\">\\" or \\"/>\\".",
         "offset": 101,
-        "ruleId": undefined,
+        "ruleId": "parser-error",
         "severity": 2,
         "size": 0,
       },
@@ -24,7 +24,7 @@ Array [
           "element": "button",
         },
         "line": 13,
-        "message": "<button> is missing required attribute \\"type\\"",
+        "message": "<button> is missing required \\"type\\" attribute",
         "offset": 12,
         "ruleId": "element-required-attributes",
         "severity": 2,
@@ -41,12 +41,21 @@ Array [
         "size": 3,
       },
     ],
-    "source": "
+    "source": "# Markdown Header (Invalid Multiline html blocks)
+
+\`\`\`html
 <div something=\\"row\\">
     <button type=\\"invalid\\">
         Button not correctly clossed
     </button
 </div>
+\`\`\`
+
+\`\`\`html
+<div>
+    <button><div>div in button</div></button>
+</div>
+\`\`\`
 ",
     "warningCount": 0,
   },

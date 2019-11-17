@@ -1,7 +1,8 @@
 import transform from "./transform";
+import { transformFile } from "html-validate/build/transform/test-utils";
 
 test("should extract html blocks from markdown files", () => {
-    const result = transform("./test/markdown.md");
+    const result = transformFile(transform, "./test/markdown.md");
     expect(result).toHaveLength(2);
 
     expect(result[0].data).toMatchSnapshot();
@@ -16,6 +17,6 @@ test("should extract html blocks from markdown files", () => {
 });
 
 test("should extract html blocks from markdown files with multi line html", () => {
-    const result = transform("./test/multiline.md");
+    const result = transformFile(transform, "./test/multiline.md");
     expect(result).toHaveLength(1);
 });
