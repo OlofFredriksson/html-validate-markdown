@@ -1,5 +1,6 @@
 import transform from "./transform";
 import { transformFile } from "html-validate/test-utils";
+import { Source } from "html-validate";
 
 test("should extract html blocks from markdown files", () => {
     const result = transformFile(transform, "./test/markdown.md");
@@ -19,4 +20,13 @@ test("should extract html blocks from markdown files", () => {
 test("should extract html blocks from markdown files with multi line html", () => {
     const result = transformFile(transform, "./test/multiline.md");
     expect(result).toHaveLength(1);
+});
+
+test("should chain transformations", () => {
+    const chain = jest.fn((source: Source) => [source]);
+    transformFile(transform, "./test/multiline.md", chain);
+    expect(chain).toHaveBeenCalledWith(
+        expect.anything(),
+        "./test/multiline.md:html"
+    );
 });
