@@ -1,5 +1,4 @@
-import { Source } from "html-validate";
-import * as fs from "fs";
+import { Source, Transformer } from "html-validate";
 
 function findLocation(
     source: string,
@@ -20,24 +19,27 @@ function findLocation(
     return [line, 1];
 }
 
-function* findTemplates(filename: string): Iterable<Source> {
-    const source = fs.readFileSync(filename, "utf-8");
+function* markdownTransform(source: Source): Iterable<Source> {
     const htmlBlock = /^(```html)([^]*?)^```/gm;
 
     let match;
-    while ((match = htmlBlock.exec(source)) !== null) {
+    while ((match = htmlBlock.exec(source.data)) !== null) {
         const [, preamble, data] = match;
         const [line, column] = findLocation(
-            source,
+            source.data,
             match.index,
             preamble.length
         );
-        yield { data: data, filename, line, column };
+        yield {
+            data,
+            filename: source.filename,
+            line,
+            column,
+            originalData: source.originalData || source.data,
+        };
     }
 }
 
-function markdownTransform(filename: string): Source[] {
-    return Array.from(findTemplates(filename));
-}
+markdownTransform.api = 1;
 
-export default markdownTransform;
+export default markdownTransform as Transformer;
