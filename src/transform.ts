@@ -32,6 +32,7 @@ function* markdownTransform(source: Source): Iterable<Source> {
         );
         yield {
             data,
+            offset: match.index + (source.offset || 0) + preamble.length,
             filename: source.filename,
             line,
             column,
