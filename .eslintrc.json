@@ -1,57 +1,55 @@
 {
-  "parser": "@typescript-eslint/parser",
+    "parser": "@typescript-eslint/parser",
 
-  "env": {
-    "node": true
-  },
+    "env": {
+        "node": true
+    },
 
-  "extends": [
-    "sidvind/es2017",
-    "plugin:@typescript-eslint/recommended",
-    "plugin:prettier/recommended"
-  ],
+    "extends": [
+        "sidvind/es2017",
+        "plugin:@typescript-eslint/recommended",
+        "plugin:prettier/recommended"
+    ],
 
-  "plugins": ["@typescript-eslint", "prettier"],
+    "plugins": ["@typescript-eslint", "prettier"],
 
-  "rules": {
-    "prettier/prettier": "error",
-    "no-console": "warn",
-    "no-dupe-class-members": "off",
-    "no-undef": "off",
-    "strict": "off",
-    "@typescript-eslint/array-type": "off",
-    "@typescript-eslint/explicit-function-return-type": "off",
-    "@typescript-eslint/explicit-member-accessibility": "off",
-    "@typescript-eslint/indent": "off",
-    "@typescript-eslint/member-delimiter-style": "error",
-    "@typescript-eslint/no-angle-bracket-type-assertion": "error",
-    "@typescript-eslint/no-explicit-any": "off",
-    "@typescript-eslint/no-triple-slash-reference": "error",
-    "@typescript-eslint/no-unused-vars": "warn",
-    "@typescript-eslint/no-use-before-define": "off",
-    "@typescript-eslint/no-var-requires": "off",
-    "@typescript-eslint/type-annotation-spacing": "error"
-  },
+    "rules": {
+        "prettier/prettier": "error",
+        "no-console": "warn",
+        "no-dupe-class-members": "off",
+        "no-undef": "off",
+        "strict": "off",
+        "@typescript-eslint/array-type": "off",
+        "@typescript-eslint/explicit-function-return-type": "off",
+        "@typescript-eslint/explicit-member-accessibility": "off",
+        "@typescript-eslint/indent": "off",
+        "@typescript-eslint/member-delimiter-style": "error",
+        "@typescript-eslint/no-explicit-any": "off",
+        "@typescript-eslint/no-unused-vars": "warn",
+        "@typescript-eslint/no-use-before-define": "off",
+        "@typescript-eslint/no-var-requires": "off",
+        "@typescript-eslint/type-annotation-spacing": "error"
+    },
 
-  "overrides": [
-    {
-      "files": "*.spec.ts",
-      "env": {
-        "jest": true
-      },
-      "plugins": ["jest"],
-      "rules": {
-        "jest/no-disabled-tests": "warn",
-        "jest/no-focused-tests": "warn",
-        "jest/no-identical-title": "error",
-        "jest/no-test-prefixes": "warn",
-        "jest/prefer-to-have-length": "error",
-        "jest/prefer-to-be-null": "error",
-        "jest/prefer-to-be-undefined": "error",
-        "jest/valid-describe": "error",
-        "jest/valid-expect": "error",
-        "jest/valid-expect-in-promise": "error"
-      }
-    }
-  ]
+    "overrides": [
+        {
+            "files": "*.spec.ts",
+            "env": {
+                "jest": true
+            },
+            "plugins": ["jest"],
+            "rules": {
+                "jest/no-disabled-tests": "warn",
+                "jest/no-focused-tests": "warn",
+                "jest/no-identical-title": "error",
+                "jest/no-test-prefixes": "warn",
+                "jest/prefer-to-have-length": "error",
+                "jest/prefer-to-be-null": "error",
+                "jest/prefer-to-be-undefined": "error",
+                "jest/valid-describe": "error",
+                "jest/valid-expect": "error",
+                "jest/valid-expect-in-promise": "error"
+            }
+        }
+    ]
 }
