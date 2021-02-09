@@ -5,7 +5,7 @@
   "description": "Transform Html blocks in Markdown files for use with html-validate.",
   "scripts": {
     "build": "tsc --build",
-    "lint": "eslint src/*.ts test/*.ts",
+    "lint": "eslint src/*.ts test/*.ts && npm run prettier:check",
     "postversion": "git push --follow-tags",
     "prettier:check": "prettier '**/*.{ts,js,json,md,scss}' --list-different",
     "prettier:write": "prettier '**/*.{ts,js,json,md,scss}' --write",
