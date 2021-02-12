@@ -1,5 +1,5 @@
 import transform from "./transform";
-import { transformFile } from "html-validate/build/transform/test-utils";
+import { transformFile } from "html-validate/test-utils";
 
 test("should extract html blocks from markdown files", () => {
     const result = transformFile(transform, "./test/markdown.md");
