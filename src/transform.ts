@@ -20,17 +20,17 @@ function findLocation(
 }
 
 function* markdownTransform(source: Source): Iterable<Source> {
-    const htmlBlock = /^(```html)([^]*?)^```/gm;
+    const htmlBlock = /^(```(html|[jt]sx?))([^]*?)^```/gm;
 
     let match;
     while ((match = htmlBlock.exec(source.data)) !== null) {
-        const [, preamble, data] = match;
+        const [, preamble, lang, data] = match;
         const [line, column] = findLocation(
             source.data,
             match.index,
             preamble.length
         );
-        yield {
+        const cur: Source = {
             data,
             offset: match.index + (source.offset || 0) + preamble.length,
             filename: source.filename,
@@ -38,6 +38,7 @@ function* markdownTransform(source: Source): Iterable<Source> {
             column,
             originalData: source.originalData || source.data,
         };
+        yield* this.chain(cur, `${source.filename}:${lang}`);
     }
 }
 
