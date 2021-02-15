@@ -1,1 +1,1 @@
-module.exports = require("./build/transform").default;
+module.exports = require("./dist/transform").default;
