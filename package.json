@@ -1,6 +1,6 @@
 {
   "name": "html-validate-markdown",
-  "version": "2.1.0",
+  "version": "2.2.0",
   "main": "index.js",
   "files": [
     "dist",
@@ -9,7 +9,6 @@
     "!**/*.spec.d.ts",
     "!**/*.spec.js"
   ],
-
   "description": "Transform Html blocks in Markdown files for use with html-validate.",
   "scripts": {
     "build": "tsc --build",
