@@ -1,9 +1,12 @@
 import { HtmlValidate } from "html-validate";
+import Transformer from "../src/transform";
+
+jest.mock("html-validate-markdown", () => Transformer, { virtual: true });
 
 const config = {
-    extends: ["htmlvalidate:recommended"],
+    extends: ["html-validate:recommended"],
     transform: {
-        "\\.(md)$": "<rootDir>",
+        "\\.(md)$": "html-validate-markdown",
     },
 };
 
