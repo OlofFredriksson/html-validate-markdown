@@ -1,3 +1,4 @@
+import { parseInfostring } from "./parse-infostring";
 import { Source, Transformer } from "html-validate";
 import { TransformContext } from "html-validate/dist/transform";
 
@@ -24,16 +25,22 @@ function* markdownTransform(
     this: TransformContext,
     source: Source
 ): Iterable<Source> {
-    const codeFence = /^(```([^\s]+))([^]*?)^```/gm;
+    const codeFence = /^(```+([^\n]+))([^]*?)^```+/gm;
 
     let match;
     while ((match = codeFence.exec(source.data)) !== null) {
-        const [, preamble, lang, data] = match;
+        const [, preamble, infostring, data] = match;
         const [line, column] = findLocation(
             source.data,
             match.index,
             preamble.length
         );
+
+        const { lang, params } = parseInfostring(infostring);
+        if (params.includes("novalidate")) {
+            continue;
+        }
+
         const cur: Source = {
             data,
             offset: match.index + (source.offset || 0) + preamble.length,
@@ -54,4 +61,4 @@ function* markdownTransform(
 
 markdownTransform.api = 1;
 
-export default markdownTransform as Transformer;
+export = markdownTransform as Transformer;
