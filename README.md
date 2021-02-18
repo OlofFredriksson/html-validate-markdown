@@ -28,6 +28,25 @@ In `.htmlvalidate.json`:
 }
 ```
 
+## Configuration
+
+By default only `html` code fences are validated but additional languages can be added by chaining additional transformers:
+
+In `.htmlvalidate.json`:
+
+```js
+{
+  "transform": {
+    "^.*\\.md$": "html-validate-markdown"
+    "^.*\\.md:vue$": "html-validate-vue:sfc"
+  }
+}
+```
+
+In this case any code fence with the language `vue` will be transformed with `html-validate-vue` before validation.
+
+If needed, `html` can be configured the same way using a regex similar to `^.*\\.md:html`.
+
 ### Development
 
 ```bash

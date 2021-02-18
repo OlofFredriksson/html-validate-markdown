@@ -24,9 +24,9 @@ test("should extract html blocks from markdown files with multi line html", () =
 
 test("should chain transformations", () => {
     const chain = jest.fn((source: Source) => [source]);
-    transformFile(transform, "./test/multiline.md", chain);
+    transformFile(transform, "./test/chain.md", chain);
     expect(chain).toHaveBeenCalledWith(
         expect.anything(),
-        "./test/multiline.md:html"
+        "./test/chain.md:vue"
     );
 });

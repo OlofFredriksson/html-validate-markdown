@@ -24,10 +24,10 @@ function* markdownTransform(
     this: TransformContext,
     source: Source
 ): Iterable<Source> {
-    const htmlBlock = /^(```(html|[jt]sx?))([^]*?)^```/gm;
+    const codeFence = /^(```([^\s]+))([^]*?)^```/gm;
 
     let match;
-    while ((match = htmlBlock.exec(source.data)) !== null) {
+    while ((match = codeFence.exec(source.data)) !== null) {
         const [, preamble, lang, data] = match;
         const [line, column] = findLocation(
             source.data,
@@ -42,7 +42,13 @@ function* markdownTransform(
             column,
             originalData: source.originalData || source.data,
         };
-        yield* this.chain(cur, `${source.filename}:${lang}`);
+
+        /* unless the language is explicitly html the language is tested if it
+         * have a configured transformer */
+        const chain = `${source.filename}:${lang}`;
+        if (lang === "html" || this.hasChain(chain)) {
+            yield* this.chain(cur, chain);
+        }
     }
 }
 
