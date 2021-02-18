@@ -1,4 +1,5 @@
 import { Source, Transformer } from "html-validate";
+import { TransformContext } from "html-validate/dist/transform";
 
 function findLocation(
     source: string,
@@ -19,7 +20,10 @@ function findLocation(
     return [line, 1];
 }
 
-function* markdownTransform(source: Source): Iterable<Source> {
+function* markdownTransform(
+    this: TransformContext,
+    source: Source
+): Iterable<Source> {
     const htmlBlock = /^(```(html|[jt]sx?))([^]*?)^```/gm;
 
     let match;
