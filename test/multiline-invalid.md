@@ -3,7 +3,7 @@
 ```html
 <div something="row">
     <button type="invalid">
-        Button not correctly clossed
+        Button not correctly closed
     </button
 </div>
 ```

@@ -20,13 +20,21 @@
 
 In `.htmlvalidate.json`:
 
-```js
+```json
 {
-  "transform": {
-    "^.*\\.md$": "html-validate-markdown"
-  }
+    "transform": {
+        "^.*\\.md$": "html-validate-markdown"
+    }
 }
 ```
+
+If you wish to ignore a code fence from validation use the `novalidate` tag:
+
+````
+```html novalidate
+<p>This will not be validated</i>
+```
+````
 
 ## Configuration
 

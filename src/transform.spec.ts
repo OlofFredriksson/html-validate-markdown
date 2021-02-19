@@ -1,5 +1,5 @@
 import transform from "./transform";
-import { transformFile } from "html-validate/test-utils";
+import { transformFile, transformString } from "html-validate/test-utils";
 import { Source } from "html-validate";
 
 test("should extract html blocks from markdown files", () => {
@@ -20,6 +20,26 @@ test("should extract html blocks from markdown files", () => {
 test("should extract html blocks from markdown files with multi line html", () => {
     const result = transformFile(transform, "./test/multiline.md");
     expect(result).toHaveLength(1);
+});
+
+test("should handle multiple backticks", () => {
+    const markdown = "````html\n<p></p>\n````";
+    const result = transformString(transform, markdown);
+    expect(result).toHaveLength(1);
+    expect(result[0].data.trim()).toEqual("<p></p>");
+});
+
+test("should handle leading space", () => {
+    const markdown = "``` html\n<p></p>\n```";
+    const result = transformString(transform, markdown);
+    expect(result).toHaveLength(1);
+    expect(result[0].data.trim()).toEqual("<p></p>");
+});
+
+test("should ignore code fence when novalidate is used", () => {
+    const markdown = "```html novalidate\n<p></p>\n```";
+    const result = transformString(transform, markdown);
+    expect(result).toHaveLength(0);
 });
 
 test("should chain transformations", () => {

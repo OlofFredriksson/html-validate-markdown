@@ -12,7 +12,7 @@ Array [
         "column": 1,
         "line": 8,
         "message": "failed to tokenize \\"</div>\\\\n\\", expected attribute, \\">\\" or \\"/>\\".",
-        "offset": 159,
+        "offset": 158,
         "ruleId": "parser-error",
         "selector": null,
         "severity": 2,
@@ -26,7 +26,7 @@ Array [
         },
         "line": 13,
         "message": "<button> is missing required \\"type\\" attribute",
-        "offset": 190,
+        "offset": 189,
         "ruleId": "element-required-attributes",
         "selector": "div > button",
         "severity": 2,
@@ -37,7 +37,7 @@ Array [
         "context": undefined,
         "line": 13,
         "message": "Element <div> is not permitted as content in <button>",
-        "offset": 198,
+        "offset": 197,
         "ruleId": "element-permitted-content",
         "selector": "div > button > div",
         "severity": 2,
@@ -49,7 +49,7 @@ Array [
 \`\`\`html
 <div something=\\"row\\">
     <button type=\\"invalid\\">
-        Button not correctly clossed
+        Button not correctly closed
     </button
 </div>
 \`\`\`
