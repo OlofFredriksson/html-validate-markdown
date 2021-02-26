@@ -4,8 +4,8 @@
 <div something="row">
     <button type="invalid">
         Button not correctly closed
-    </button
-</div>
+    </div>
+</button>
 ```
 
 ```html

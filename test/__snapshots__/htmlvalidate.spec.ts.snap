@@ -5,18 +5,50 @@ exports[`should find errors in "markdown.md" 1`] = `Array []`;
 exports[`should find errors in "multiline-invalid.md" 1`] = `
 Array [
   Object {
-    "errorCount": 3,
+    "errorCount": 5,
     "filePath": "test/multiline-invalid.md",
     "messages": Array [
       Object {
-        "column": 1,
-        "line": 8,
-        "message": "failed to tokenize \\"</div>\\\\n\\", expected attribute, \\">\\" or \\"/>\\".",
-        "offset": 158,
-        "ruleId": "parser-error",
+        "column": 19,
+        "context": Object {
+          "allowed": Array [
+            "submit",
+            "reset",
+            "button",
+          ],
+          "attribute": "type",
+          "element": "button",
+          "value": "invalid",
+        },
+        "line": 5,
+        "message": "Attribute \\"type\\" has invalid value \\"invalid\\"",
+        "offset": 99,
+        "ruleId": "attribute-allowed-values",
+        "selector": "div > button",
+        "severity": 2,
+        "size": 7,
+      },
+      Object {
+        "column": 6,
+        "context": undefined,
+        "line": 7,
+        "message": "Mismatched close-tag, expected '</button>' but found '</div>'.",
+        "offset": 150,
+        "ruleId": "close-order",
         "selector": null,
         "severity": 2,
-        "size": 1,
+        "size": 4,
+      },
+      Object {
+        "column": 2,
+        "context": undefined,
+        "line": 8,
+        "message": "Mismatched close-tag, expected '</div>' but found '</button>'.",
+        "offset": 157,
+        "ruleId": "close-order",
+        "selector": null,
+        "severity": 2,
+        "size": 7,
       },
       Object {
         "column": 6,
@@ -26,7 +58,7 @@ Array [
         },
         "line": 13,
         "message": "<button> is missing required \\"type\\" attribute",
-        "offset": 189,
+        "offset": 190,
         "ruleId": "element-required-attributes",
         "selector": "div > button",
         "severity": 2,
@@ -37,7 +69,7 @@ Array [
         "context": undefined,
         "line": 13,
         "message": "Element <div> is not permitted as content in <button>",
-        "offset": 197,
+        "offset": 198,
         "ruleId": "element-permitted-content",
         "selector": "div > button > div",
         "severity": 2,
@@ -50,8 +82,8 @@ Array [
 <div something=\\"row\\">
     <button type=\\"invalid\\">
         Button not correctly closed
-    </button
-</div>
+    </div>
+</button>
 \`\`\`
 
 \`\`\`html
