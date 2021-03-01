@@ -1,6 +1,6 @@
 name: Build
 
-on: [push]
+on: [push, pull_request]
 
 jobs:
     build:
@@ -16,9 +16,36 @@ jobs:
               uses: actions/setup-node@v1
               with:
                   node-version: ${{ matrix.node-version }}
-            - run: npm install
+            - run: npm ci
             - run: npm run build
             - run: npm run lint
             - run: npm test
+              env:
+                  CI: true
+
+    integration:
+        runs-on: ubuntu-latest
+
+        strategy:
+            matrix:
+                html-validate: [2.17, 3.0.0, 4.0.0]
+
+        steps:
+            - uses: actions/checkout@v2
+            - name: Use Node.js 14
+              uses: actions/setup-node@v1
+              with:
+                  node-version: 14
+            - name: Build
+              run: |
+                  npm ci
+                  npm run build
+            - name: Install html-validate ${{ matrix.html-validate }}
+              run: npm install --no-save html-validate@${{ matrix.html-validate }}
+            - name: Integration test
+              run: |
+                  for spec in test/*.spec.ts; do sed 's#../src#../dist#g' -i "${spec}"; done
+                  sed '/dist/s#jest.mock#//#' -i "test/htmlvalidate.spec.ts"
+                  npm test -- --no-coverage test
               env:
                   CI: true
