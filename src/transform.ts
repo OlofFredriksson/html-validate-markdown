@@ -1,6 +1,20 @@
+import {
+    Source,
+    Transformer,
+    TransformContext,
+    compatibilityCheck,
+} from "html-validate";
 import { parseInfostring } from "./parse-infostring";
-import { Source, Transformer } from "html-validate";
-import { TransformContext } from "html-validate/dist/transform";
+
+/* eslint-disable-next-line @typescript-eslint/no-var-requires */
+const pkg = require("../package.json");
+
+/* warn when using unsupported html-validate library version */
+/* istanbul ignore next */
+if (compatibilityCheck) {
+    const range = pkg.peerDependencies["html-validate"];
+    compatibilityCheck(pkg.name, range);
+}
 
 function findLocation(
     source: string,
