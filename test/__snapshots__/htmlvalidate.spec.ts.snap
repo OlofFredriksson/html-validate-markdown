@@ -10,16 +10,6 @@ Array [
     "messages": Array [
       Object {
         "column": 19,
-        "context": Object {
-          "allowed": Array [
-            "submit",
-            "reset",
-            "button",
-          ],
-          "attribute": "type",
-          "element": "button",
-          "value": "invalid",
-        },
         "line": 5,
         "message": "Attribute \\"type\\" has invalid value \\"invalid\\"",
         "offset": 99,
@@ -30,7 +20,6 @@ Array [
       },
       Object {
         "column": 6,
-        "context": undefined,
         "line": 7,
         "message": "Mismatched close-tag, expected '</button>' but found '</div>'.",
         "offset": 150,
@@ -41,7 +30,6 @@ Array [
       },
       Object {
         "column": 2,
-        "context": undefined,
         "line": 8,
         "message": "Mismatched close-tag, expected '</div>' but found '</button>'.",
         "offset": 157,
@@ -52,10 +40,6 @@ Array [
       },
       Object {
         "column": 6,
-        "context": Object {
-          "attribute": "type",
-          "element": "button",
-        },
         "line": 13,
         "message": "<button> is missing required \\"type\\" attribute",
         "offset": 190,
@@ -66,7 +50,6 @@ Array [
       },
       Object {
         "column": 14,
-        "context": undefined,
         "line": 13,
         "message": "Element <div> is not permitted as content in <button>",
         "offset": 198,

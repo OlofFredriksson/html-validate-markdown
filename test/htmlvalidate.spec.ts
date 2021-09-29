@@ -18,7 +18,9 @@ function filterReport(report: Report): void {
     for (const result of report.results) {
         for (const msg of result.messages) {
             /* eslint-disable-next-line @typescript-eslint/no-explicit-any */
-            delete (msg as any).ruleUrl;
+            const src: any = msg;
+            delete src.ruleUrl;
+            delete src.context;
         }
     }
 }
