@@ -7,14 +7,14 @@ test("should extract html blocks from markdown files", () => {
     expect(result).toHaveLength(2);
 
     expect(result[0].data).toMatchSnapshot();
-    expect(result[0].filename).toEqual("./test/markdown.md");
-    expect(result[0].line).toEqual(3);
-    expect(result[0].column).toEqual(9);
+    expect(result[0].filename).toBe("./test/markdown.md");
+    expect(result[0].line).toBe(3);
+    expect(result[0].column).toBe(9);
 
     expect(result[1].data).toMatchSnapshot();
-    expect(result[1].filename).toEqual("./test/markdown.md");
-    expect(result[1].line).toEqual(9);
-    expect(result[1].column).toEqual(9);
+    expect(result[1].filename).toBe("./test/markdown.md");
+    expect(result[1].line).toBe(9);
+    expect(result[1].column).toBe(9);
 });
 
 test("should extract html blocks from markdown files with multi line html", () => {
@@ -26,14 +26,14 @@ test("should handle multiple backticks", () => {
     const markdown = "````html\n<p></p>\n````";
     const result = transformString(transform, markdown);
     expect(result).toHaveLength(1);
-    expect(result[0].data.trim()).toEqual("<p></p>");
+    expect(result[0].data.trim()).toBe("<p></p>");
 });
 
 test("should handle leading space", () => {
     const markdown = "``` html\n<p></p>\n```";
     const result = transformString(transform, markdown);
     expect(result).toHaveLength(1);
-    expect(result[0].data.trim()).toEqual("<p></p>");
+    expect(result[0].data.trim()).toBe("<p></p>");
 });
 
 test("should ignore code fence when novalidate is used", () => {
