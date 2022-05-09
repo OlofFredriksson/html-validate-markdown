@@ -42,6 +42,7 @@ jobs:
                   npm run build
             - name: Install html-validate ${{ matrix.html-validate }}
               run: |
+                  test "${{ matrix.html-validate }}" -ge "7" || npm install jest@27 ts-jest@27
                   npm install $(npx -y npm-min-peer html-validate --major ${{ matrix.html-validate }} --with-name)
                   npm ls html-validate
             - name: Integration test
