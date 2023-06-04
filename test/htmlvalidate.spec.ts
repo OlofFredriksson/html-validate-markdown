@@ -1,4 +1,4 @@
-import { HtmlValidate, Report } from "html-validate";
+import { FileSystemConfigLoader, HtmlValidate, Report } from "html-validate";
 import Transformer from "../src/transform";
 
 jest.mock("html-validate-markdown", () => Transformer, { virtual: true });
@@ -9,6 +9,7 @@ const config = {
         "\\.(md)$": "html-validate-markdown",
     },
 };
+const loader = new FileSystemConfigLoader(config);
 
 /**
  * Filter out properties not present in all supported versions of html-validate (see
@@ -25,17 +26,17 @@ function filterReport(report: Report): void {
     }
 }
 
-test('should find errors in "markdown.md"', () => {
-    const htmlvalidate = new HtmlValidate(config);
-    const report = htmlvalidate.validateFile("test/markdown.md");
+test('should find errors in "markdown.md"', async () => {
+    const htmlvalidate = new HtmlValidate(loader);
+    const report = await htmlvalidate.validateFile("test/markdown.md");
     filterReport(report);
     expect(report.valid).toBeTruthy();
     expect(report.results).toMatchSnapshot();
 });
 
-test('should find errors in "multiline-invalid.md"', () => {
-    const htmlvalidate = new HtmlValidate(config);
-    const report = htmlvalidate.validateFile("test/multiline-invalid.md");
+test('should find errors in "multiline-invalid.md"', async () => {
+    const htmlvalidate = new HtmlValidate(loader);
+    const report = await htmlvalidate.validateFile("test/multiline-invalid.md");
     filterReport(report);
     expect(report.valid).toBeFalsy();
     expect(report.results).toMatchSnapshot();
