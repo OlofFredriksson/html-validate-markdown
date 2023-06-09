@@ -8,7 +8,7 @@ jobs:
 
         strategy:
             matrix:
-                node-version: [14.x, 16.x, 18.x]
+                node-version: [16.x, 18.x, 20.x]
 
         steps:
             - uses: actions/checkout@v3
@@ -28,7 +28,7 @@ jobs:
 
         strategy:
             matrix:
-                html-validate: [2.x, 3.x, 4.x, 5.x, 6.x, 7.x]
+                html-validate: [5.x, 6.x, 7.x, 8.x]
 
         steps:
             - uses: actions/checkout@v3
@@ -47,6 +47,7 @@ jobs:
                   npm ls html-validate
             - name: Integration test
               run: |
+                  if [[ "${{ matrix.html-validate }}" != "8.x" ]]; then for filename in test/*.spec.ts test/__snapshots__/*.snap; do echo "${filename}"; sed 's/\(<.*>\) element \(is not permitted as content\) under /Element \1 \2 in /g' -i "${filename}"; done; fi
                   for spec in test/*.spec.ts; do sed 's#../src#../dist#g' -i "${spec}"; done
                   sed '/dist/s#jest.mock#//#' -i "test/htmlvalidate.spec.ts"
                   npm test -- --no-coverage test

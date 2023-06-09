@@ -51,7 +51,7 @@ Array [
       Object {
         "column": 14,
         "line": 13,
-        "message": "Element <div> is not permitted as content in <button>",
+        "message": "<div> element is not permitted as content under <button>",
         "offset": 198,
         "ruleId": "element-permitted-content",
         "selector": "div > button > div",
