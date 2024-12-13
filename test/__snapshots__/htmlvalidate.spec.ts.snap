@@ -1,24 +1,24 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`should find errors in "markdown.md" 1`] = `Array []`;
+exports[`should find errors in "markdown.md" 1`] = `[]`;
 
 exports[`should find errors in "multiline-invalid.md" 1`] = `
-Array [
-  Object {
+[
+  {
     "errorCount": 5,
     "filePath": "test/multiline-invalid.md",
-    "messages": Array [
-      Object {
+    "messages": [
+      {
         "column": 19,
         "line": 5,
-        "message": "Attribute \\"type\\" has invalid value \\"invalid\\"",
+        "message": "Attribute "type" has invalid value "invalid"",
         "offset": 99,
         "ruleId": "attribute-allowed-values",
         "selector": "div > button",
         "severity": 2,
         "size": 7,
       },
-      Object {
+      {
         "column": 6,
         "line": 7,
         "message": "Mismatched close-tag, expected '</button>' but found '</div>'.",
@@ -28,7 +28,7 @@ Array [
         "severity": 2,
         "size": 4,
       },
-      Object {
+      {
         "column": 2,
         "line": 8,
         "message": "Mismatched close-tag, expected '</div>' but found '</button>'.",
@@ -38,17 +38,17 @@ Array [
         "severity": 2,
         "size": 7,
       },
-      Object {
+      {
         "column": 6,
         "line": 13,
-        "message": "<button> is missing required \\"type\\" attribute",
+        "message": "<button> is missing required "type" attribute",
         "offset": 190,
         "ruleId": "element-required-attributes",
         "selector": "div > button",
         "severity": 2,
         "size": 6,
       },
-      Object {
+      {
         "column": 14,
         "line": 13,
         "message": "<div> element is not permitted as content under <button>",
@@ -62,8 +62,8 @@ Array [
     "source": "# Markdown Header (Invalid Multiline html blocks)
 
 \`\`\`html
-<div something=\\"row\\">
-    <button type=\\"invalid\\">
+<div something="row">
+    <button type="invalid">
         Button not correctly closed
     </div>
 </button>
