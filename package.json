@@ -38,7 +38,7 @@
   "devDependencies": {
     "@sidvind/build-scripts": "^1.0.0",
     "@types/jest": "^27.5.0",
-    "@types/node": "16.18.34",
+    "@types/node": "^20.17.10",
     "@typescript-eslint/eslint-plugin": "^5.22.0",
     "@typescript-eslint/parser": "^5.22.0",
     "eslint": "^8.15.0",
@@ -72,6 +72,6 @@
     }
   },
   "engines": {
-    "node": ">= 16.0"
+    "node": ">= 20.0"
   }
 }
