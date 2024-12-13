@@ -44,7 +44,7 @@
     "@forsakringskassan/jest-config": "^29.6.0",
     "@forsakringskassan/prettier-config": "^2.1.2",
     "@sidvind/build-scripts": "^1.0.0",
-    "@types/jest": "^27.5.0",
+    "@types/jest": "^29.5.14",
     "@types/node": "^20.17.10",
     "html-validate": "8.0.0",
     "husky": "^9.1.7",
