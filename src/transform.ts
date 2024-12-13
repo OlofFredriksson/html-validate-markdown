@@ -1,12 +1,12 @@
 import {
-    Source,
-    Transformer,
-    TransformContext,
+    type Source,
+    type Transformer,
+    type TransformContext,
     compatibilityCheck,
 } from "html-validate";
 import { parseInfostring } from "./parse-infostring";
 
-/* eslint-disable-next-line @typescript-eslint/no-var-requires */
+// eslint-disable-next-line @typescript-eslint/no-require-imports -- debt
 const pkg = require("../package.json");
 
 /* warn when using unsupported html-validate library version */
@@ -19,7 +19,7 @@ if (compatibilityCheck) {
 function findLocation(
     source: string,
     index: number,
-    preamble: number
+    preamble: number,
 ): [number, number] {
     let line = 1;
     let prev = 0;
@@ -37,7 +37,7 @@ function findLocation(
 
 function* markdownTransform(
     this: TransformContext,
-    source: Source
+    source: Source,
 ): Iterable<Source> {
     const codeFence = /^(```+([^\n]+))([^]*?)^```+/gm;
 
@@ -47,7 +47,7 @@ function* markdownTransform(
         const [line, column] = findLocation(
             source.data,
             match.index,
-            preamble.length
+            preamble.length,
         );
 
         const { lang, params } = parseInfostring(infostring);

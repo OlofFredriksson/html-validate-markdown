@@ -1,8 +1,9 @@
-import transform from "./transform";
 import { transformFile, transformString } from "html-validate/test-utils";
-import { Source } from "html-validate";
+import { type Source } from "html-validate";
 
-test("should extract html blocks from markdown files", () => {
+import transform from "./transform";
+
+it("should extract html blocks from markdown files", () => {
     const result = transformFile(transform, "./test/markdown.md");
     expect(result).toHaveLength(2);
 
@@ -17,36 +18,36 @@ test("should extract html blocks from markdown files", () => {
     expect(result[1].column).toBe(9);
 });
 
-test("should extract html blocks from markdown files with multi line html", () => {
+it("should extract html blocks from markdown files with multi line html", () => {
     const result = transformFile(transform, "./test/multiline.md");
     expect(result).toHaveLength(1);
 });
 
-test("should handle multiple backticks", () => {
+it("should handle multiple backticks", () => {
     const markdown = "````html\n<p></p>\n````";
     const result = transformString(transform, markdown);
     expect(result).toHaveLength(1);
     expect(result[0].data.trim()).toBe("<p></p>");
 });
 
-test("should handle leading space", () => {
+it("should handle leading space", () => {
     const markdown = "``` html\n<p></p>\n```";
     const result = transformString(transform, markdown);
     expect(result).toHaveLength(1);
     expect(result[0].data.trim()).toBe("<p></p>");
 });
 
-test("should ignore code fence when novalidate is used", () => {
+it("should ignore code fence when novalidate is used", () => {
     const markdown = "```html novalidate\n<p></p>\n```";
     const result = transformString(transform, markdown);
     expect(result).toHaveLength(0);
 });
 
-test("should chain transformations", () => {
+it("should chain transformations", () => {
     const chain = jest.fn((source: Source) => [source]);
     transformFile(transform, "./test/chain.md", chain);
     expect(chain).toHaveBeenCalledWith(
         expect.anything(),
-        "./test/chain.md:vue"
+        "./test/chain.md:vue",
     );
 });
