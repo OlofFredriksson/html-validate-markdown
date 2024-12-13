@@ -19,11 +19,6 @@
     "test": "jest"
   },
   "prettier": "@forsakringskassan/prettier-config",
-  "husky": {
-    "hooks": {
-      "pre-commit": "lint-staged"
-    }
-  },
   "lint-staged": {
     "*.{ts,js,json,md,scss}": "prettier --write"
   },
