@@ -14,7 +14,7 @@
     "build": "tsc --build",
     "lint": "eslint src/*.ts test/*.ts && npm run prettier:check",
     "postversion": "git push --follow-tags",
-    "prettier:check": "prettier . --list-different",
+    "prettier:check": "prettier . --check",
     "prettier:write": "prettier . --write",
     "test": "jest"
   },
