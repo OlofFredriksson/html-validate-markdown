@@ -21,6 +21,7 @@
     "build:cjs-dts": "dts-bundle-generator --project tsconfig.cjs.json --no-banner -o dist/index.d.cts src/cjs-shim.ts",
     "lint": "eslint src/*.ts test/*.ts && npm run prettier:check",
     "postversion": "git push --follow-tags",
+    "prepare": "husky",
     "prettier:check": "prettier . --check",
     "prettier:write": "prettier . --write",
     "test": "jest"
