@@ -17,7 +17,10 @@ jobs:
               with:
                   node-version: ${{ matrix.node-version }}
             - run: npm ci
-            - run: npm run build
+            - run: |
+                  npm run build
+                  node dist/index.cjs
+                  node dist/index.mjs
             - run: npm run lint
             - run: npm test
               env:
@@ -48,7 +51,7 @@ jobs:
                   npm ls html-validate || true
             - name: Integration test
               run: |
-                  for spec in test/*.spec.ts; do sed 's#../src#../dist#g' -i "${spec}"; done
+                  for spec in test/*.spec.ts; do sed 's#../src/transform#../dist/index.cjs#g' -i "${spec}"; done
                   sed '/dist/s#jest.mock#//#' -i "test/htmlvalidate.spec.ts"
                   npm test -- --no-coverage test
               env:

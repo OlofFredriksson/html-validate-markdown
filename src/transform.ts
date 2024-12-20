@@ -4,11 +4,11 @@ import {
     type TransformContext,
     compatibilityCheck,
 } from "html-validate";
-import pkg from "../package.json";
+import { name, peerDependencies } from "../package.json";
 import { parseInfostring } from "./parse-infostring";
 
-const range = pkg.peerDependencies["html-validate"];
-compatibilityCheck(pkg.name, range);
+const range = peerDependencies["html-validate"];
+compatibilityCheck(name, range);
 
 function findLocation(
     source: string,
@@ -93,4 +93,4 @@ function markdownTransform(
 
 markdownTransform.api = 1;
 
-export = markdownTransform as Transformer;
+export default markdownTransform as Transformer;
