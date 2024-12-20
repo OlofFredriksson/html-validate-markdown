@@ -7,7 +7,9 @@
     "index.js",
     "!**/*.snap",
     "!**/*.spec.d.ts",
-    "!**/*.spec.js"
+    "!**/*.spec.js",
+    "!**/*.spec.js.map",
+    "!**/*.tsbuildinfo"
   ],
   "description": "Transform Html blocks in Markdown files for use with html-validate.",
   "scripts": {
@@ -39,6 +41,7 @@
     "@forsakringskassan/jest-config": "^29.6.0",
     "@forsakringskassan/prettier-config": "^2.1.2",
     "@sidvind/build-scripts": "^1.0.0",
+    "@tsconfig/node20": "20.1.4",
     "@types/jest": "^29.5.14",
     "@types/node": "^20.17.10",
     "html-validate": "^8.27.0",
