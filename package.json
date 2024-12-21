@@ -1,19 +1,27 @@
 {
   "name": "html-validate-markdown",
   "version": "4.0.0",
-  "main": "dist/transform.js",
+  "main": "dist/index.cjs",
+  "module": "dist/index.mjs",
+  "exports": {
+    ".": {
+      "require": "./dist/index.cjs",
+      "import": "./dist/index.mjs"
+    }
+  },
   "files": [
-    "dist",
-    "index.js",
-    "!**/*.snap",
-    "!**/*.spec.d.ts",
-    "!**/*.spec.js"
+    "dist"
   ],
   "description": "Transform Html blocks in Markdown files for use with html-validate.",
   "scripts": {
-    "build": "tsc --build",
+    "prebuild": "tsc --build",
+    "build": "run-s build:lib build:esm-dts build:cjs-dts",
+    "build:lib": "node build.mjs",
+    "build:esm-dts": "dts-bundle-generator --no-banner -o dist/index.d.mts src/transform.ts",
+    "build:cjs-dts": "dts-bundle-generator --project tsconfig.cjs.json --no-banner -o dist/index.d.cts src/cjs-shim.ts",
     "lint": "eslint src/*.ts test/*.ts && npm run prettier:check",
     "postversion": "git push --follow-tags",
+    "prepare": "husky",
     "prettier:check": "prettier . --check",
     "prettier:write": "prettier . --write",
     "test": "jest"
@@ -39,15 +47,19 @@
     "@forsakringskassan/jest-config": "^29.6.0",
     "@forsakringskassan/prettier-config": "^2.1.2",
     "@sidvind/build-scripts": "^1.0.0",
+    "@tsconfig/node20": "20.1.4",
     "@types/jest": "^29.5.14",
     "@types/node": "^20.17.10",
+    "dts-bundle-generator": "9.5.1",
+    "esbuild": "0.24.2",
     "html-validate": "^8.27.0",
     "husky": "^9.1.7",
     "lint-staged": "^15.2.11",
+    "npm-run-all2": "7.0.2",
     "typescript": "^5.7.2"
   },
   "peerDependencies": {
-    "html-validate": "^5.3.0 || ^6.0.0 || ^7.0.0 || ^8.0.0"
+    "html-validate": "^8.26.0 || ^9.0.0 || >= 9.0.0-rc.8 < 10.0.0"
   },
   "jest": {
     "preset": "@forsakringskassan/jest-config"

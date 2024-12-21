@@ -4,17 +4,11 @@ import {
     type TransformContext,
     compatibilityCheck,
 } from "html-validate";
+import { name, peerDependencies } from "../package.json";
 import { parseInfostring } from "./parse-infostring";
 
-// eslint-disable-next-line @typescript-eslint/no-require-imports -- debt
-const pkg = require("../package.json");
-
-/* warn when using unsupported html-validate library version */
-/* istanbul ignore next */
-if (compatibilityCheck) {
-    const range = pkg.peerDependencies["html-validate"];
-    compatibilityCheck(pkg.name, range);
-}
+const range = peerDependencies["html-validate"];
+compatibilityCheck(name, range);
 
 function findLocation(
     source: string,
@@ -35,11 +29,27 @@ function findLocation(
     return [line, 1];
 }
 
-function* markdownTransform(
+function isThenable<T>(value: T | Promise<T>): value is Promise<T> {
+    return (
+        value &&
+        typeof value === "object" &&
+        "then" in value &&
+        typeof value.then === "function"
+    );
+}
+
+function noThenableItems(
+    value: Array<Iterable<Source> | Promise<Iterable<Source>>>,
+): value is Array<Iterable<Source>> {
+    return value.every((it) => !isThenable(it));
+}
+
+function markdownTransform(
     this: TransformContext,
     source: Source,
-): Iterable<Source> {
+): Source[] | Promise<Source[]> {
     const codeFence = /^(```+([^\n]+))([^]*?)^```+/gm;
+    const result: Array<Iterable<Source> | Promise<Iterable<Source>>> = [];
 
     let match;
     while ((match = codeFence.exec(source.data)) !== null) {
@@ -68,11 +78,19 @@ function* markdownTransform(
          * have a configured transformer */
         const chain = `${source.filename}:${lang}`;
         if (lang === "html" || this.hasChain(chain)) {
-            yield* this.chain(cur, chain);
+            result.push(this.chain(cur, chain));
         }
+    }
+
+    if (noThenableItems(result)) {
+        return Array.from(result, (it) => Array.from(it)).flat();
+    } else {
+        return Promise.all(result).then((result) => {
+            return Array.from(result, (it) => Array.from(it)).flat();
+        });
     }
 }
 
 markdownTransform.api = 1;
 
-export = markdownTransform as Transformer;
+export default markdownTransform as Transformer;

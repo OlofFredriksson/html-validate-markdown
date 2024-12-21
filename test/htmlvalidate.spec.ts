@@ -1,11 +1,10 @@
 import {
-    FileSystemConfigLoader,
     HtmlValidate,
+    StaticConfigLoader,
+    staticResolver,
     type Report,
 } from "html-validate";
 import Transformer from "../src/transform";
-
-jest.mock("html-validate-markdown", () => Transformer, { virtual: true });
 
 const config = {
     extends: ["html-validate:recommended"],
@@ -13,7 +12,13 @@ const config = {
         "\\.(md)$": "html-validate-markdown",
     },
 };
-const loader = new FileSystemConfigLoader(config);
+
+const resolver = staticResolver({
+    transformers: {
+        "html-validate-markdown": Transformer,
+    },
+});
+const loader = new StaticConfigLoader([resolver], config);
 
 /**
  * Filter out properties not present in all supported versions of html-validate (see
