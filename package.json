@@ -39,6 +39,7 @@
     "type": "git",
     "url": "git+https://github.com/OlofFredriksson/html-validate-markdown.git"
   },
+  "homepage": "https://github.com/OlofFredriksson/html-validate-markdown",
   "bugs": {
     "url": "https://github.com/OlofFredriksson/html-validate-markdown/issues"
   },
