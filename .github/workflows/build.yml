@@ -44,6 +44,10 @@ jobs:
                   npm ci
                   npm run build
                   find dist
+            - name: package.json lint
+              run: |
+                  npm pack
+                  npm exec npm-pkg-lint
             - name: Install html-validate v${{ matrix.html-validate }}
               run: |
                   test "${{ matrix.html-validate }}" -lt "9" && npm install $(npx -y npm-min-peer html-validate --major ${{ matrix.html-validate }} --with-name) || true
