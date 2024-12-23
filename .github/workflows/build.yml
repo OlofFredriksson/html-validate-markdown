@@ -50,9 +50,8 @@ jobs:
                   npm exec npm-pkg-lint
             - name: Install html-validate v${{ matrix.html-validate }}
               run: |
-                  test "${{ matrix.html-validate }}" -lt "9" && npm install $(npx -y npm-min-peer html-validate --major ${{ matrix.html-validate }} --with-name) || true
-                  test "${{ matrix.html-validate }}" -eq "9" && npm install -f html-validate@9.0.0-rc.8 || true
-                  npm ls html-validate || true
+                  npm install $(npx -y npm-min-peer html-validate --major ${{ matrix.html-validate }} --with-name)
+                  npm ls html-validate
             - name: Integration test
               run: |
                   for spec in test/*.spec.ts; do sed 's#../src/transform#../dist/index.cjs#g' -i "${spec}"; done
