@@ -1,6 +1,6 @@
 {
   "name": "html-validate-markdown",
-  "version": "5.0.0",
+  "version": "4.0.0",
   "main": "dist/index.cjs",
   "module": "dist/index.mjs",
   "keywords": [
