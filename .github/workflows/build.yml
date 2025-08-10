@@ -8,7 +8,7 @@ jobs:
 
         strategy:
             matrix:
-                node-version: [20.x, 18.x, 22.x]
+                node-version: [20.x, 22.x]
 
         steps:
             - uses: actions/checkout@v3
@@ -31,7 +31,7 @@ jobs:
 
         strategy:
             matrix:
-                html-validate: [8, 9]
+                html-validate: [8, 9, 10]
 
         steps:
             - uses: actions/checkout@v3
