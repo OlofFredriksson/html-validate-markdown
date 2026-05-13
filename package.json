@@ -62,7 +62,7 @@
     "dts-bundle-generator": "9.5.1",
     "esbuild": "0.24.2",
     "html-validate": "^11.0.0",
-    "npm-run-all2": "7.0.2",
+    "npm-run-all2": "8.0.4",
     "typescript": "^5.7.2"
   },
   "peerDependencies": {
