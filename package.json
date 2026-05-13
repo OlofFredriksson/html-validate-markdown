@@ -42,6 +42,9 @@
   "commitlint": {
         "extends": "@forsakringskassan/commitlint-config/no-jira"
   },
+  "release": {
+    "extends": "@forsakringskassan/semantic-release-config"
+  },
   "author": "Olof",
   "license": "MIT",
   "devDependencies": {
