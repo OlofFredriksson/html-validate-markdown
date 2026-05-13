@@ -40,7 +40,7 @@
     "url": "https://github.com/OlofFredriksson/html-validate-markdown/issues"
   },
   "commitlint": {
-        "extends": "@forsakringskassan/commitlint-config/no-jira"
+    "extends": "@forsakringskassan/commitlint-config/no-jira"
   },
   "release": {
     "extends": "@forsakringskassan/semantic-release-config"
@@ -54,7 +54,7 @@
     "@forsakringskassan/eslint-config-jest": "^11.4.11",
     "@forsakringskassan/eslint-config-typescript": "^11.4.11",
     "@forsakringskassan/jest-config": "^29.6.0",
-    "@forsakringskassan/prettier-config": "^2.1.2",
+    "@forsakringskassan/prettier-config": "3.3.9",
     "@sidvind/build-scripts": "^1.0.0",
     "@tsconfig/node20": "20.1.4",
     "@types/jest": "^29.5.14",
