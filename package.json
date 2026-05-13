@@ -26,15 +26,11 @@
     "build:cjs-dts": "dts-bundle-generator --project tsconfig.cjs.json --no-banner -o dist/index.d.cts src/cjs-shim.ts",
     "lint": "eslint src/*.ts test/*.ts && npm run prettier:check",
     "postversion": "git push --follow-tags",
-    "prepare": "husky",
     "prettier:check": "prettier . --check",
     "prettier:write": "prettier . --write",
     "test": "jest"
   },
   "prettier": "@forsakringskassan/prettier-config",
-  "lint-staged": {
-    "*.{ts,js,json,md,scss}": "prettier --write"
-  },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/OlofFredriksson/html-validate-markdown.git"
@@ -43,9 +39,13 @@
   "bugs": {
     "url": "https://github.com/OlofFredriksson/html-validate-markdown/issues"
   },
+  "commitlint": {
+        "extends": "@forsakringskassan/commitlint-config/no-jira"
+  },
   "author": "Olof",
   "license": "MIT",
   "devDependencies": {
+    "@forsakringskassan/commitlint-config": "3.6.2",
     "@forsakringskassan/eslint-config": "^11.4.3",
     "@forsakringskassan/eslint-config-cli": "^11.4.2",
     "@forsakringskassan/eslint-config-jest": "^11.4.11",
@@ -59,8 +59,6 @@
     "dts-bundle-generator": "9.5.1",
     "esbuild": "0.24.2",
     "html-validate": "^10.0.0",
-    "husky": "^9.1.7",
-    "lint-staged": "^15.2.11",
     "npm-run-all2": "7.0.2",
     "typescript": "^5.7.2"
   },
