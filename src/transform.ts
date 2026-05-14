@@ -1,7 +1,7 @@
 import {
     type Source,
-    type Transformer,
     type TransformContext,
+    type Transformer,
     compatibilityCheck,
 } from "html-validate";
 import { name, peerDependencies } from "../package.json";
@@ -48,6 +48,7 @@ function markdownTransform(
     this: TransformContext,
     source: Source,
 ): Source[] | Promise<Source[]> {
+    // eslint-disable-next-line sonarjs/slow-regex -- technical debt
     const codeFence = /^(```+([^\n]+))([^]*?)^```+/gm;
     const result: Array<Iterable<Source> | Promise<Iterable<Source>>> = [];
 

@@ -1,5 +1,5 @@
-import { transformFile, transformString } from "html-validate/test-utils";
 import { type Source } from "html-validate";
+import { transformFile, transformString } from "html-validate/test-utils";
 
 import transform from "./transform";
 
