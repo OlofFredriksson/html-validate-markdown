@@ -1,8 +1,8 @@
 import {
+    type Report,
     HtmlValidate,
     StaticConfigLoader,
     staticResolver,
-    type Report,
 } from "html-validate";
 import Transformer from "../src/transform";
 
