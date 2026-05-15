@@ -55,7 +55,7 @@
     "@forsakringskassan/eslint-config": "14.1.20",
     "@forsakringskassan/eslint-config-cli": "14.1.20",
     "@forsakringskassan/eslint-config-jest": "14.1.9",
-    "@forsakringskassan/eslint-config-typescript": "14.1.23",
+    "@forsakringskassan/eslint-config-typescript": "14.1.26",
     "@forsakringskassan/jest-config": "30.3.0",
     "@forsakringskassan/prettier-config": "3.3.10",
     "@sidvind/build-scripts": "1.0.0",
