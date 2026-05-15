@@ -1,52 +1,55 @@
 {
   "name": "html-validate-markdown",
   "version": "5.2.0",
-  "main": "dist/index.cjs",
-  "module": "dist/index.mjs",
+  "description": "Transform Html blocks in Markdown files for use with html-validate.",
   "keywords": [
     "html",
     "lint",
     "html-validate"
   ],
+  "homepage": "https://github.com/OlofFredriksson/html-validate-markdown",
+  "bugs": {
+    "url": "https://github.com/OlofFredriksson/html-validate-markdown/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/OlofFredriksson/html-validate-markdown.git"
+  },
+  "license": "MIT",
+  "author": "Olof",
   "exports": {
     ".": {
       "import": "./dist/index.mjs",
       "require": "./dist/index.cjs"
     }
   },
+  "main": "dist/index.cjs",
+  "module": "dist/index.mjs",
   "files": [
     "dist"
   ],
-  "description": "Transform Html blocks in Markdown files for use with html-validate.",
   "scripts": {
     "prebuild": "tsc --build",
     "build": "run-s build:lib build:esm-dts build:cjs-dts",
-    "build:lib": "node build.mjs",
-    "build:esm-dts": "dts-bundle-generator --no-banner -o dist/index.d.mts src/transform.ts",
     "build:cjs-dts": "dts-bundle-generator --project tsconfig.cjs.json --no-banner -o dist/index.d.cts src/cjs-shim.ts",
+    "build:esm-dts": "dts-bundle-generator --no-banner -o dist/index.d.mts src/transform.ts",
+    "build:lib": "node build.mjs",
     "lint": "eslint src/*.ts test/*.ts && npm run prettier:check",
-    "postversion": "git push --follow-tags",
     "prettier:check": "prettier . --check",
     "prettier:write": "prettier . --write",
-    "test": "jest"
-  },
-  "prettier": "@forsakringskassan/prettier-config",
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/OlofFredriksson/html-validate-markdown.git"
-  },
-  "homepage": "https://github.com/OlofFredriksson/html-validate-markdown",
-  "bugs": {
-    "url": "https://github.com/OlofFredriksson/html-validate-markdown/issues"
+    "test": "jest",
+    "postversion": "git push --follow-tags"
   },
   "commitlint": {
     "extends": "@forsakringskassan/commitlint-config/no-jira"
   },
+  "prettier": "@forsakringskassan/prettier-config",
   "release": {
     "extends": "@forsakringskassan/semantic-release-config"
   },
-  "author": "Olof",
-  "license": "MIT",
+  "jest": {
+    "preset": "@forsakringskassan/jest-config"
+  },
   "devDependencies": {
     "@forsakringskassan/commitlint-config": "3.6.2",
     "@forsakringskassan/eslint-config": "14.1.20",
@@ -67,9 +70,6 @@
   },
   "peerDependencies": {
     "html-validate": "^8.26.0 || ^9.0.0 || ^10.0.0 || ^11.0.0"
-  },
-  "jest": {
-    "preset": "@forsakringskassan/jest-config"
   },
   "engines": {
     "node": "^22.0.0 || >= 24.0.0"
