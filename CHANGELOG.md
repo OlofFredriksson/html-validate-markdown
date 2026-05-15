@@ -1,5 +1,15 @@
 # CHANGELOG
 
+## [6.0.0](https://github.com/OlofFredriksson/html-validate-markdown/compare/v5.2.0...v6.0.0) (2026-05-15)
+
+### ⚠ BREAKING CHANGES
+
+* **deps:** require nodejs v22 or later
+
+### Features
+
+* **deps:** require nodejs v22 or later ([1a517fe](https://github.com/OlofFredriksson/html-validate-markdown/commit/1a517fef4735f4de35fc9e7af99262cd2da1f6e6))
+
 ## [5.2.0](https://github.com/OlofFredriksson/html-validate-markdown/compare/v5.1.0...v5.2.0) (2026-05-13)
 
 ### Features
