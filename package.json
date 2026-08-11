@@ -63,7 +63,7 @@
     "@types/jest": "30.0.0",
     "@types/node": "22.20.1",
     "dts-bundle-generator": "9.5.1",
-    "esbuild": "0.28.1",
+    "esbuild": "0.28.2",
     "html-validate": "11.6.2",
     "npm-run-all2": "9.0.3",
     "typescript": "6.0.3"
