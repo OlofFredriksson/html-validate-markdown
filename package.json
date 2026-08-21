@@ -35,6 +35,7 @@
     "build:esm-dts": "dts-bundle-generator --no-banner -o dist/index.d.mts src/transform.ts",
     "build:lib": "node build.mjs",
     "lint": "eslint src/*.ts test/*.ts && npm run prettier:check",
+    "prepare": "commitlint-config",
     "prettier:check": "prettier . --check",
     "prettier:write": "prettier . --write",
     "test": "jest",
@@ -51,7 +52,7 @@
     "preset": "@forsakringskassan/jest-config"
   },
   "devDependencies": {
-    "@forsakringskassan/commitlint-config": "3.6.9",
+    "@forsakringskassan/commitlint-config": "4.2.8",
     "@forsakringskassan/eslint-config": "15.0.18",
     "@forsakringskassan/eslint-config-cli": "15.0.0",
     "@forsakringskassan/eslint-config-jest": "15.0.0",
