@@ -8,6 +8,8 @@ import { name, peerDependencies } from "../package.json";
 import { parseInfostring } from "./parse-infostring";
 
 const range = peerDependencies["html-validate"];
+
+/* eslint-disable-next-line unicorn/no-top-level-side-effects -- recommended solution */
 compatibilityCheck(name, range);
 
 function findLocation(
@@ -48,8 +50,8 @@ function markdownTransform(
     this: TransformContext,
     source: Source,
 ): Source[] | Promise<Source[]> {
-    // eslint-disable-next-line sonarjs/slow-regex -- technical debt
-    const codeFence = /^(```+([^\n]+))([^]*?)^```+/gm;
+    /* eslint-disable-next-line regexp/no-super-linear-backtracking -- technical debt */
+    const codeFence = /^(`{3,}([^\n]+))([\s\S]*?)^`{3,}/gm;
     const result: Array<Iterable<Source> | Promise<Iterable<Source>>> = [];
 
     let match;
@@ -85,11 +87,11 @@ function markdownTransform(
 
     if (noThenableItems(result)) {
         return Array.from(result, (it) => Array.from(it)).flat();
-    } else {
-        return Promise.all(result).then((result) => {
-            return Array.from(result, (it) => Array.from(it)).flat();
-        });
     }
+    /* eslint-disable-next-line unicorn/prefer-await -- cannot use async */
+    return Promise.all(result).then((result) => {
+        return Array.from(result, (it) => Array.from(it)).flat();
+    });
 }
 
 markdownTransform.api = 1;

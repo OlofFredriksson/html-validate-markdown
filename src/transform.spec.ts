@@ -1,9 +1,11 @@
+import { expect, it, jest } from "@jest/globals";
 import { type Source } from "html-validate";
 import { transformFile, transformString } from "html-validate/test-utils";
 
 import transform from "./transform";
 
 it("should extract html blocks from markdown files", async () => {
+    expect.assertions(9);
     const result = await transformFile(transform, "./test/markdown.md");
     expect(result).toHaveLength(2);
 
@@ -19,11 +21,13 @@ it("should extract html blocks from markdown files", async () => {
 });
 
 it("should extract html blocks from markdown files with multi line html", async () => {
+    expect.assertions(1);
     const result = await transformFile(transform, "./test/multiline.md");
     expect(result).toHaveLength(1);
 });
 
 it("should handle multiple backticks", async () => {
+    expect.assertions(2);
     const markdown = "````html\n<p></p>\n````";
     const result = await transformString(transform, markdown);
     expect(result).toHaveLength(1);
@@ -31,6 +35,7 @@ it("should handle multiple backticks", async () => {
 });
 
 it("should handle leading space", async () => {
+    expect.assertions(2);
     const markdown = "``` html\n<p></p>\n```";
     const result = await transformString(transform, markdown);
     expect(result).toHaveLength(1);
@@ -38,13 +43,15 @@ it("should handle leading space", async () => {
 });
 
 it("should ignore code fence when novalidate is used", async () => {
+    expect.assertions(1);
     const markdown = "```html novalidate\n<p></p>\n```";
     const result = await transformString(transform, markdown);
     expect(result).toHaveLength(0);
 });
 
 it("should chain transformations", async () => {
-    const chain = jest.fn((source: Source) => [source]);
+    expect.assertions(1);
+    const chain = jest.fn((source: Source, _filename: string) => [source]);
     await transformFile(transform, "./test/chain.md", chain);
     expect(chain).toHaveBeenCalledWith(
         expect.anything(),
