@@ -1,3 +1,4 @@
+import { expect, it } from "@jest/globals";
 import { parseInfostring } from "./parse-infostring";
 
 it("should return lang and params", () => {

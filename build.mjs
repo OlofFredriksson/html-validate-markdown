@@ -1,5 +1,5 @@
 import fs from "node:fs/promises";
-import { build as esbuild, analyzeMetafile } from "esbuild";
+import { analyzeMetafile, build as esbuild } from "esbuild";
 
 const entrypoint = {
     cjs: "src/cjs-shim.ts",

@@ -1,3 +1,4 @@
+import { expect, it } from "@jest/globals";
 import {
     type Report,
     HtmlValidate,
@@ -36,6 +37,7 @@ function filterReport(report: Report): void {
 }
 
 it('should find errors in "markdown.md"', async () => {
+    expect.assertions(2);
     const htmlvalidate = new HtmlValidate(loader);
     const report = await htmlvalidate.validateFile("test/markdown.md");
     filterReport(report);
@@ -44,6 +46,7 @@ it('should find errors in "markdown.md"', async () => {
 });
 
 it('should find errors in "multiline-invalid.md"', async () => {
+    expect.assertions(2);
     const htmlvalidate = new HtmlValidate(loader);
     const report = await htmlvalidate.validateFile("test/multiline-invalid.md");
     filterReport(report);
