@@ -55,7 +55,7 @@
     "@forsakringskassan/commitlint-config": "4.2.8",
     "@forsakringskassan/eslint-config": "15.8.13",
     "@forsakringskassan/eslint-config-cli": "15.8.9",
-    "@forsakringskassan/eslint-config-jest": "15.8.15",
+    "@forsakringskassan/eslint-config-jest": "15.8.16",
     "@forsakringskassan/eslint-config-typescript": "15.8.14",
     "@forsakringskassan/jest-config": "30.4.1",
     "@forsakringskassan/prettier-config": "3.7.8",
