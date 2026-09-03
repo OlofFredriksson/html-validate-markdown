@@ -67,7 +67,7 @@
     "@typescript/native": "npm:typescript@7.0.2",
     "dts-bundle-generator": "9.5.1",
     "esbuild": "0.28.2",
-    "html-validate": "11.10.0",
+    "html-validate": "11.11.0",
     "npm-run-all2": "9.0.3",
     "typescript": "npm:@typescript/typescript6@6.0.2"
   },
