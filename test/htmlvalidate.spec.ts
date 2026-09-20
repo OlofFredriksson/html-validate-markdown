@@ -1,11 +1,15 @@
+import path from "node:path";
+import { normalizeReport } from "@html-validate/plugin-utils/test-utils";
 import { expect, it } from "@jest/globals";
 import {
-    type Report,
     HtmlValidate,
     StaticConfigLoader,
     staticResolver,
+    version,
 } from "html-validate";
 import Transformer from "../src/transform";
+
+const rootDir = path.resolve(__dirname, "..");
 
 const config = {
     extends: ["html-validate:recommended"],
@@ -21,35 +25,20 @@ const resolver = staticResolver({
 });
 const loader = new StaticConfigLoader([resolver], config);
 
-/**
- * Filter out properties not present in all supported versions of html-validate (see
- * peerDependencies). This required in the version matrix integration test.
- */
-function filterReport(report: Report): void {
-    for (const result of report.results) {
-        for (const msg of result.messages) {
-            /* eslint-disable-next-line @typescript-eslint/no-explicit-any --  debt*/
-            const src: any = msg;
-            delete src.ruleUrl;
-            delete src.context;
-        }
-    }
-}
-
 it('should find errors in "markdown.md"', async () => {
     expect.assertions(2);
     const htmlvalidate = new HtmlValidate(loader);
     const report = await htmlvalidate.validateFile("test/markdown.md");
-    filterReport(report);
-    expect(report.valid).toBeTruthy();
-    expect(report.results).toMatchSnapshot();
+    const normalized = normalizeReport(report, { rootDir, version });
+    expect(normalized.valid).toBeTruthy();
+    expect(normalized.results).toMatchSnapshot();
 });
 
 it('should find errors in "multiline-invalid.md"', async () => {
     expect.assertions(2);
     const htmlvalidate = new HtmlValidate(loader);
     const report = await htmlvalidate.validateFile("test/multiline-invalid.md");
-    filterReport(report);
-    expect(report.valid).toBeFalsy();
-    expect(report.results).toMatchSnapshot();
+    const normalized = normalizeReport(report, { rootDir, version });
+    expect(normalized.valid).toBeFalsy();
+    expect(normalized.results).toMatchSnapshot();
 });
