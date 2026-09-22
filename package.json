@@ -58,7 +58,7 @@
     "@forsakringskassan/eslint-config-jest": "15.10.0",
     "@forsakringskassan/eslint-config-typescript": "15.10.0",
     "@forsakringskassan/jest-config": "30.4.3",
-    "@forsakringskassan/prettier-config": "3.7.9",
+    "@forsakringskassan/prettier-config": "3.7.10",
     "@html-validate/plugin-utils": "4.2.0",
     "@jest/globals": "30.5.2",
     "@sidvind/build-scripts": "1.0.0",
