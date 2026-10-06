@@ -70,6 +70,9 @@
   "jest": {
     "preset": "@forsakringskassan/jest-config"
   },
+  "allowScripts": {
+    "esbuild": true
+  },
   "engines": {
     "node": ">= 20.0"
   }
