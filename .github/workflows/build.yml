@@ -47,7 +47,7 @@ jobs:
             - name: package.json lint
               run: |
                   npm pack
-                  npm exec npm-pkg-lint
+                  npm exec npm-pkg-lint -- --allow-dependency @sidvind/build-scripts
             - name: Install html-validate v${{ matrix.html-validate }}
               run: |
                   npm install $(npx -y npm-min-peer html-validate --major ${{ matrix.html-validate }} --with-name)
