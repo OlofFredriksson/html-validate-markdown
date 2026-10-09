@@ -53,10 +53,10 @@
   },
   "devDependencies": {
     "@forsakringskassan/commitlint-config": "4.2.8",
-    "@forsakringskassan/eslint-config": "15.11.6",
-    "@forsakringskassan/eslint-config-cli": "15.11.0",
+    "@forsakringskassan/eslint-config": "15.11.13",
+    "@forsakringskassan/eslint-config-cli": "15.11.11",
     "@forsakringskassan/eslint-config-jest": "15.11.1",
-    "@forsakringskassan/eslint-config-typescript": "15.11.7",
+    "@forsakringskassan/eslint-config-typescript": "15.11.14",
     "@forsakringskassan/jest-config": "30.4.6",
     "@forsakringskassan/prettier-config": "3.7.11",
     "@html-validate/plugin-utils": "4.3.0",
