@@ -44,7 +44,7 @@
   "commitlint": {
     "extends": "@forsakringskassan/commitlint-config/no-jira"
   },
-  "prettier": "@forsakringskassan/prettier-config",
+  "prettier": "@html-validate/prettier-config",
   "release": {
     "extends": "@forsakringskassan/semantic-release-config"
   },
@@ -58,8 +58,8 @@
     "@forsakringskassan/eslint-config-jest": "15.11.1",
     "@forsakringskassan/eslint-config-typescript": "15.11.14",
     "@forsakringskassan/jest-config": "30.4.6",
-    "@forsakringskassan/prettier-config": "3.7.11",
     "@html-validate/plugin-utils": "4.3.0",
+    "@html-validate/prettier-config": "4.1.15",
     "@jest/globals": "30.5.2",
     "@sidvind/build-scripts": "1.0.0",
     "@tsconfig/node22": "22.0.6",
