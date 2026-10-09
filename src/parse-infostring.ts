@@ -3,5 +3,6 @@ export function parseInfostring(infostring: string): {
 	params: string[];
 } {
 	const [lang, ...params] = infostring.trim().split(/\s+/);
-	return { lang, params };
+	/* eslint-disable-next-line @typescript-eslint/no-non-null-assertion -- technical debt */
+	return { lang: lang!, params };
 }

@@ -1,3 +1,27 @@
 {
-  "extends": ["local>forsakringskassan/renovate-config"]
+  "extends": ["gitlab>html-validate/renovate-config"],
+  "ignoreDeps": [
+    "@arethetypeswrong/cli",
+    "@html-validate/commitlint-config",
+    "@html-validate/jest-config",
+    "@html-validate/plugin-utils",
+    "@html-validate/release-scripts",
+    "@jest/globals",
+    "@tsconfig/node22",
+    "@tsconfig/strictest",
+    "@types/estree",
+    "@types/node",
+    "@types/semver",
+    "@typescript/native",
+    "cloneman",
+    "dts-bundle-generator",
+    "esbuild",
+    "husky",
+    "jest",
+    "jest-environment-jsdom",
+    "npm-pkg-lint",
+    "semver",
+    "ts-jest",
+    "typescript"
+  ]
 }

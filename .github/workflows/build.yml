@@ -19,9 +19,10 @@ jobs:
       - run: npm ci
       - run: |
           npm run build
-          node dist/index.cjs
-          node dist/index.mjs
-      - run: npm run lint
+          node dist/cjs/index.cjs
+          node dist/esm/index.mjs
+      - run: npm run eslint
+      - run: npm run prettier:check
       - run: npm test
         env:
           CI: true
@@ -42,6 +43,9 @@ jobs:
       - name: Build
         run: |
           npm ci
+          if [[ ${{ matrix.html-validate }} -lt 10 ]]; then
+            npm install jest@29 jest-environment-jsdom@29 jest-snapshot@29 jest-diff@29 jest-runtime@29 @types/jest@29
+          fi
           npm run build
           find dist
       - name: package.json lint
@@ -54,7 +58,7 @@ jobs:
           npm ls html-validate
       - name: Integration test
         run: |
-          for spec in test/*.spec.ts; do sed 's#../src/transform#../dist/index.cjs#g' -i "${spec}"; done
+          for spec in test/*.spec.ts; do sed 's#../src/transform#../dist/cjs/index.cjs#g' -i "${spec}"; done
           sed '/dist/s#jest.mock#//#' -i "test/htmlvalidate.spec.ts"
           npm test -- --no-coverage test
         env:

@@ -3,6 +3,8 @@
 {
   "extends": ["./tsconfig.json"],
   "compilerOptions": {
-    "rootDirs": ["./src", "./tests"]
+    "rootDirs": ["./src", "./tests"],
+    "module": "esnext",
+    "moduleResolution": "bundler"
   }
 }

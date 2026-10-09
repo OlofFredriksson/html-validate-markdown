@@ -1,16 +1,16 @@
+/* This file is managed by "@html-validate/plugin-template". Changes will be overwritten */
+
 {
-  "extends": "@tsconfig/node22/tsconfig.json",
+  "extends": ["@tsconfig/node22", "@tsconfig/strictest"],
   "compilerOptions": {
-    "rootDirs": ["./src", "./test"],
-    "outDir": "./dist",
+    "rootDir": ".",
     "declaration": true,
     "noEmit": true,
-    "module": "node16",
-    "moduleResolution": "node16",
+    "outDir": "dist",
     "resolveJsonModule": true,
     "sourceMap": true,
-    "types": ["node", "jest"]
+    "types": ["node"]
   },
   "include": ["src/**/*.ts", "test/**/*.ts"],
-  "exclude": ["node_modules", "src/cjs-shim.ts"]
+  "exclude": ["node_modules"]
 }
