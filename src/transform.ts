@@ -1,8 +1,8 @@
 import {
-    type Source,
-    type TransformContext,
-    type Transformer,
-    compatibilityCheck,
+	type Source,
+	type TransformContext,
+	type Transformer,
+	compatibilityCheck,
 } from "html-validate";
 import { name, peerDependencies } from "../package.json";
 import { parseInfostring } from "./parse-infostring";
@@ -12,86 +12,74 @@ const range = peerDependencies["html-validate"];
 /* eslint-disable-next-line unicorn/no-top-level-side-effects -- recommended solution */
 compatibilityCheck(name, range);
 
-function findLocation(
-    source: string,
-    index: number,
-    preamble: number,
-): [number, number] {
-    let line = 1;
-    let prev = 0;
-    let pos = source.indexOf("\n");
-    while (pos !== -1) {
-        if (pos > index) {
-            return [line, index - prev + preamble + 1];
-        }
-        line++;
-        prev = pos;
-        pos = source.indexOf("\n", pos + 1);
-    }
-    return [line, 1];
+function findLocation(source: string, index: number, preamble: number): [number, number] {
+	let line = 1;
+	let prev = 0;
+	let pos = source.indexOf("\n");
+	while (pos !== -1) {
+		if (pos > index) {
+			return [line, index - prev + preamble + 1];
+		}
+		line++;
+		prev = pos;
+		pos = source.indexOf("\n", pos + 1);
+	}
+	return [line, 1];
 }
 
 function isThenable<T>(value: T | Promise<T>): value is Promise<T> {
-    return (
-        value &&
-        typeof value === "object" &&
-        "then" in value &&
-        typeof value.then === "function"
-    );
+	return value && typeof value === "object" && "then" in value && typeof value.then === "function";
 }
 
 function noThenableItems(
-    value: Array<Iterable<Source> | Promise<Iterable<Source>>>,
+	value: Array<Iterable<Source> | Promise<Iterable<Source>>>,
 ): value is Array<Iterable<Source>> {
-    return value.every((it) => !isThenable(it));
+	return value.every((it) => !isThenable(it));
 }
 
-function markdownTransform(
-    this: TransformContext,
-    source: Source,
-): Source[] | Promise<Source[]> {
-    /* eslint-disable-next-line regexp/no-super-linear-backtracking -- technical debt */
-    const codeFence = /^(`{3,}([^\n]+))([\s\S]*?)^`{3,}/gm;
-    const result: Array<Iterable<Source> | Promise<Iterable<Source>>> = [];
+function markdownTransform(this: TransformContext, source: Source): Source[] | Promise<Source[]> {
+	/* eslint-disable-next-line regexp/no-super-linear-backtracking -- technical debt */
+	const codeFence = /^(`{3,}([^\n]+))([\s\S]*?)^`{3,}/gm;
+	const result: Array<Iterable<Source> | Promise<Iterable<Source>>> = [];
 
-    let match;
-    while ((match = codeFence.exec(source.data)) !== null) {
-        const [, preamble, infostring, data] = match;
-        const [line, column] = findLocation(
-            source.data,
-            match.index,
-            preamble.length,
-        );
+	let match;
+	while ((match = codeFence.exec(source.data)) !== null) {
+		const [, preamble, infostring, data] = match;
+		/* eslint-disable-next-line @typescript-eslint/no-non-null-assertion -- technical debt */
+		const [line, column] = findLocation(source.data, match.index, preamble!.length);
 
-        const { lang, params } = parseInfostring(infostring);
-        if (params.includes("novalidate")) {
-            continue;
-        }
+		/* eslint-disable-next-line @typescript-eslint/no-non-null-assertion -- technical debt */
+		const { lang, params } = parseInfostring(infostring!);
+		if (params.includes("novalidate")) {
+			continue;
+		}
 
-        const cur: Source = {
-            data,
-            offset: match.index + (source.offset || 0) + preamble.length,
-            filename: source.filename,
-            line,
-            column,
-            originalData: source.originalData || source.data,
-        };
+		const cur: Source = {
+			/* eslint-disable-next-line @typescript-eslint/no-non-null-assertion -- technical debt */
+			data: data!,
+			/* eslint-disable-next-line @typescript-eslint/no-non-null-assertion -- technical debt */
+			offset: match.index + (source.offset || 0) + preamble!.length,
+			filename: source.filename,
+			line,
+			column,
+			originalData: source.originalData || source.data,
+		};
 
-        /* unless the language is explicitly html the language is tested if it
-         * have a configured transformer */
-        const chain = `${source.filename}:${lang}`;
-        if (lang === "html" || this.hasChain(chain)) {
-            result.push(this.chain(cur, chain));
-        }
-    }
+		/* unless the language is explicitly html the language is tested if it
+		 * have a configured transformer */
+		const chain = `${source.filename}:${lang}`;
+		if (lang === "html" || this.hasChain(chain)) {
+			result.push(this.chain(cur, chain));
+		}
+	}
 
-    if (noThenableItems(result)) {
-        return Array.from(result, (it) => Array.from(it)).flat();
-    }
-    /* eslint-disable-next-line unicorn/prefer-await -- cannot use async */
-    return Promise.all(result).then((result) => {
-        return Array.from(result, (it) => Array.from(it)).flat();
-    });
+	if (noThenableItems(result)) {
+		return Array.from(result, (it) => Array.from(it)).flat();
+	}
+	/* eslint-disable-next-line unicorn/prefer-await -- cannot use async */
+	return Promise.all(result).then((result) => {
+		return Array.from(result, (it) => Array.from(it)).flat();
+	});
 }
 
 markdownTransform.api = 1;

@@ -19,68 +19,103 @@
   "author": "Olof",
   "exports": {
     ".": {
-      "import": "./dist/index.mjs",
-      "require": "./dist/index.cjs"
+      "import": {
+        "types": "./dist/esm/index.d.mts",
+        "default": "./dist/esm/index.mjs"
+      },
+      "require": {
+        "types": "./dist/cjs/index.d.cts",
+        "default": "./dist/cjs/index.cjs"
+      }
     }
   },
-  "main": "dist/index.cjs",
-  "module": "dist/index.mjs",
+  "main": "dist/cjs/index.cjs",
+  "module": "dist/esm/index.mjs",
   "files": [
     "dist"
   ],
   "scripts": {
-    "prebuild": "tsc --build",
-    "build": "run-s build:lib build:esm-dts build:cjs-dts",
-    "build:cjs-dts": "dts-bundle-generator --project tsconfig.cjs.json --no-banner -o dist/index.d.cts src/cjs-shim.ts",
-    "build:esm-dts": "dts-bundle-generator --no-banner -o dist/index.d.mts src/transform.ts",
-    "build:lib": "node build.mjs",
-    "lint": "eslint src/*.ts test/*.ts && npm run prettier:check",
-    "prepare": "commitlint-config",
-    "prettier:check": "prettier . --check",
-    "prettier:write": "prettier . --write",
-    "test": "jest",
-    "postversion": "git push --follow-tags"
+    "attw": "attw --no-emoji --pack .",
+    "prebuild": "tsc",
+    "build": "node build.mjs",
+    "eslint": "eslint --cache .",
+    "eslint:fix": "eslint --cache --fix .",
+    "prepack": "release-prepack package.json --bundle",
+    "postpack": "release-postpack package.json",
+    "prepare": "cloneman verify && husky",
+    "prepublishOnly": "release-prepack package.json --bundle",
+    "prettier:check": "prettier --check .",
+    "prettier:write": "prettier --write .",
+    "postpublish": "release-postpack package.json",
+    "test": "jest"
   },
   "commitlint": {
-    "extends": "@forsakringskassan/commitlint-config/no-jira"
+    "extends": "@html-validate"
   },
-  "prettier": "@forsakringskassan/prettier-config",
+  "prettier": "@html-validate/prettier-config",
   "release": {
-    "extends": "@forsakringskassan/semantic-release-config"
+    "extends": "@html-validate/semantic-release-config"
   },
   "jest": {
-    "preset": "@forsakringskassan/jest-config"
+    "preset": "@html-validate/jest-config"
+  },
+  "dependencies": {
+    "@html-validate/plugin-utils": "^4.0.0"
   },
   "devDependencies": {
-    "@forsakringskassan/commitlint-config": "4.2.8",
+    "@arethetypeswrong/cli": "0.18.5",
     "@forsakringskassan/eslint-config": "15.11.13",
     "@forsakringskassan/eslint-config-cli": "15.11.11",
     "@forsakringskassan/eslint-config-jest": "15.11.1",
     "@forsakringskassan/eslint-config-typescript": "15.11.14",
-    "@forsakringskassan/jest-config": "30.4.6",
-    "@forsakringskassan/prettier-config": "3.7.11",
+    "@html-validate/commitlint-config": "4.3.3",
+    "@html-validate/jest-config": "3.18.2",
+    "@html-validate/plugin-template": "1.1.41",
     "@html-validate/plugin-utils": "4.3.0",
+    "@html-validate/prettier-config": "4.1.15",
+    "@html-validate/release-scripts": "7.6.12",
     "@jest/globals": "30.5.2",
     "@sidvind/build-scripts": "1.0.0",
     "@tsconfig/node22": "22.0.6",
+    "@tsconfig/strictest": "2.0.8",
+    "@types/estree": "1.0.9",
     "@types/jest": "30.0.0",
     "@types/node": "22.20.5",
+    "@types/semver": "7.8.0",
     "@typescript/native": "npm:typescript@7.0.2",
+    "cloneman": "1.27.1",
     "dts-bundle-generator": "9.5.1",
     "esbuild": "0.28.2",
     "html-validate": "11.16.2",
+    "husky": "9.1.7",
+    "jest": "30.5.2",
+    "jest-environment-jsdom": "30.5.2",
+    "npm-pkg-lint": "5.4.0",
     "npm-run-all2": "9.0.3",
+    "semver": "7.8.5",
+    "ts-jest": "29.4.14",
     "typescript": "npm:@typescript/typescript6@6.0.2"
   },
   "peerDependencies": {
-    "html-validate": "^8.26.0 || ^9.0.0 || ^10.0.0 || ^11.0.0"
+    "html-validate": "^8.21.0 || ^9.0.0 || ^10.0.0 || ^11.0.0"
   },
   "engines": {
-    "node": "^22.0.0 || >= 24.0.0"
+    "node": "^22.20 || ^24.8 || >= 26"
   },
   "allowScripts": {
+    "@html-validate/commitlint-config": true,
     "@parcel/watcher": false,
     "esbuild": true,
+    "fsevents": false,
     "unrs-resolver": true
-  }
+  },
+  "cloneman": {
+    "version": "1.1.41",
+    "template": "@html-validate/plugin-template",
+    "parameters": {},
+    "fileHash": "bf7c34ba3c7792a30ebc85ae2881914263ab8d3d60a0f073f63559ca6d6afd95"
+  },
+  "externalDependencies": [
+    "@html-validate/plugin-utils"
+  ]
 }
