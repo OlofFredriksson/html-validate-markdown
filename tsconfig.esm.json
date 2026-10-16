@@ -1,0 +1,10 @@
+/* This file is managed by "@html-validate/plugin-template". Changes will be overwritten */
+
+{
+  "extends": ["./tsconfig.json"],
+  "compilerOptions": {
+    "rootDirs": ["./src", "./tests"],
+    "module": "esnext",
+    "moduleResolution": "bundler"
+  }
+}

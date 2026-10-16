@@ -1,0 +1,118 @@
+image: node:24
+
+include:
+  - component: $CI_SERVER_FQDN/html-validate/gitlab-ci/release@master
+    inputs:
+      legacy: false
+      on-push: true
+
+stages:
+  - prepare
+  - test
+  - build
+  - compatibility
+  - release
+
+NPM:
+  stage: prepare
+  artifacts:
+    name: ${CI_PROJECT_PATH_SLUG}-${CI_PIPELINE_ID}-npm
+    paths:
+      - node_modules/
+      - packages/*/node_modules/
+    reports:
+      dependency_scanning: gl-dependency-scanning.json
+  script:
+    - node --version
+    - npm --version
+    - npm ci --no-fund --no-audit --no-update-notifier
+    - npm audit --json --production | npx --yes gitlab-npm-audit-parser -o gl-dependency-scanning.json || true
+    - test -z "${UPSTREAM_VERSION}" || npm install "html-validate@${UPSTREAM_VERSION}"
+
+ESLint:
+  stage: test
+  script:
+    - npm exec eslint-config -- --check
+    - npm run eslint -- --max-warnings 0
+
+Jest:
+  stage: test
+  coverage: /Branches\s+:\s(\d+.\d+%)/
+  artifacts:
+    name: ${CI_PROJECT_PATH_SLUG}-${CI_PIPELINE_ID}-coverage
+    paths:
+      - coverage
+    reports:
+      junit: temp/jest.xml
+  before_script:
+    - npm run --if-present build
+  script:
+    - npm test
+
+Prettier:
+  stage: test
+  script:
+    - npm run prettier:check
+
+attw:
+  stage: test
+  needs: []
+  script:
+    - npm ci
+    - npm run build
+    - npm run attw
+
+Build:
+  stage: build
+  needs:
+    - NPM
+  dependencies:
+    - NPM
+  artifacts:
+    name: ${CI_PROJECT_PATH_SLUG}-${CI_PIPELINE_ID}-build
+    paths:
+      - dist
+  script:
+    - npm run --if-present build
+    - node dist/cjs/index.cjs
+    - node dist/esm/index.mjs
+    - npm pack
+    - npm exec npm-pkg-lint
+
+.compat: &compat
+  stage: compatibility
+  dependencies:
+    - NPM
+    - Build
+  needs:
+    - NPM
+    - Build
+  script:
+    - for spec in test/*.spec.ts; do sed 's#../src#../dist/cjs/index.cjs#g' -i "${spec}"; done
+    - sed '/dist/s#jest.mock#//#' -i "test/htmlvalidate.spec.ts"
+    - npm test -- --no-coverage test
+
+Node:
+  extends: .compat
+  parallel:
+    matrix:
+      - VERSION:
+          - 22
+          - 24
+          - 26
+  image: "node:${VERSION}"
+
+HTML-validate:
+  extends: .compat
+  parallel:
+    matrix:
+      - VERSION:
+          - 8
+          - 9
+          - 10
+          - 11
+  before_script:
+    - test ${VERSION} -lt 10 && npm install jest@29 jest-environment-jsdom@29 jest-snapshot@29 jest-diff@29 jest-runtime@29 @types/jest@29
+    - npm install $(npx -y npm-min-peer html-validate --major ${VERSION} --with-name)
+    - npm ls html-validate
+    - npm ls jest

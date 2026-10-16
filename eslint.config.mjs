@@ -28,4 +28,13 @@ export default [
 			"unicorn/filename-case": "off",
 		},
 	},
+
+	{
+		/* files which should lint even if project isn't build yet */
+		name: "dist",
+		files: [".htmlvalidate.cjs"],
+		rules: {
+			"import-x/extensions": "off",
+		},
+	},
 ];
