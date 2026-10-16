@@ -41,10 +41,15 @@
     "test": "jest",
     "postversion": "git push --follow-tags"
   },
+  "allowScripts": {
+    "@parcel/watcher": false,
+    "esbuild": true,
+    "unrs-resolver": true
+  },
   "commitlint": {
     "extends": "@forsakringskassan/commitlint-config/no-jira"
   },
-  "prettier": "@forsakringskassan/prettier-config",
+  "prettier": "@html-validate/prettier-config",
   "release": {
     "extends": "@forsakringskassan/semantic-release-config"
   },
@@ -58,8 +63,8 @@
     "@forsakringskassan/eslint-config-jest": "15.11.17",
     "@forsakringskassan/eslint-config-typescript": "15.11.14",
     "@forsakringskassan/jest-config": "30.4.6",
-    "@forsakringskassan/prettier-config": "3.7.12",
     "@html-validate/plugin-utils": "4.3.0",
+    "@html-validate/prettier-config": "4.1.17",
     "@jest/globals": "30.5.2",
     "@sidvind/build-scripts": "1.0.0",
     "@tsconfig/node22": "22.0.6",
@@ -77,10 +82,5 @@
   },
   "engines": {
     "node": "^22.0.0 || >= 24.0.0"
-  },
-  "allowScripts": {
-    "@parcel/watcher": false,
-    "esbuild": true,
-    "unrs-resolver": true
   }
 }

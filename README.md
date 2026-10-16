@@ -7,8 +7,8 @@
 
 ````html
 <div>
-    This is a html block. View Source to see me. Remember to always add ```html
-    before your code in order to transform it.
+  This is a html block. View Source to see me. Remember to always add ```html before your code in
+  order to transform it.
 </div>
 ````
 
@@ -22,9 +22,9 @@ In `.htmlvalidate.json`:
 
 ```json
 {
-    "transform": {
-        "^.*\\.md$": "html-validate-markdown"
-    }
+  "transform": {
+    "^.*\\.md$": "html-validate-markdown"
+  }
 }
 ```
 
