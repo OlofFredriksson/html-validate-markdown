@@ -45,16 +45,20 @@ function markdownTransform(this: TransformContext, source: Source): Source[] | P
 	let match;
 	while ((match = codeFence.exec(source.data)) !== null) {
 		const [, preamble, infostring, data] = match;
-		const [line, column] = findLocation(source.data, match.index, preamble.length);
+		/* eslint-disable-next-line @typescript-eslint/no-non-null-assertion -- technical debt */
+		const [line, column] = findLocation(source.data, match.index, preamble!.length);
 
-		const { lang, params } = parseInfostring(infostring);
+		/* eslint-disable-next-line @typescript-eslint/no-non-null-assertion -- technical debt */
+		const { lang, params } = parseInfostring(infostring!);
 		if (params.includes("novalidate")) {
 			continue;
 		}
 
 		const cur: Source = {
-			data,
-			offset: match.index + (source.offset || 0) + preamble.length,
+			/* eslint-disable-next-line @typescript-eslint/no-non-null-assertion -- technical debt */
+			data: data!,
+			/* eslint-disable-next-line @typescript-eslint/no-non-null-assertion -- technical debt */
+			offset: match.index + (source.offset || 0) + preamble!.length,
 			filename: source.filename,
 			line,
 			column,
