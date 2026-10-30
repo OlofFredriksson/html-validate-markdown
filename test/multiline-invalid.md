@@ -2,10 +2,8 @@
 
 ```html
 <div something="row">
-    <button type="invalid">
-        Button not correctly closed
-    </div>
-</button>
+  <button type="invalid"></button>
+</div>
 ```
 
 ```html

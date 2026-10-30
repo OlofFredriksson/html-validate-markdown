@@ -1,25 +1,28 @@
 name: Release
+
 on:
   workflow_dispatch:
-permissions:
-  id-token: write
-  contents: write
+  schedule:
+    - cron: "0 0 * * 5"
+
 jobs:
   release:
     runs-on: ubuntu-latest
+    permissions:
+      contents: write
+      issues: write
+      pull-requests: write
+      id-token: write
     steps:
       - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7
+        with:
+          fetch-depth: 0
       - uses: actions/setup-node@949feb2413d6458794dcd2491c4babbbce0c15c1 # v7
         with:
-          node-version: "22.x"
-          registry-url: "https://registry.npmjs.org"
+          node-version: 24.x
       - run: npm ci
       - run: npm run build
       - name: Release
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
-          npm install -g npm@11.11.0
-          npm config set access public
-          npm install --no-save "@forsakringskassan/semantic-release-config"
+          npm install --no-save "@html-validate/semantic-release-config"
           npm exec semantic-release
