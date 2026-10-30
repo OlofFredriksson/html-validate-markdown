@@ -63,7 +63,7 @@
     "@forsakringskassan/eslint-config-jest": "15.13.0",
     "@forsakringskassan/eslint-config-typescript": "15.13.2",
     "@forsakringskassan/jest-config": "30.4.7",
-    "@html-validate/plugin-utils": "4.3.0",
+    "@html-validate/plugin-utils": "4.5.0",
     "@html-validate/prettier-config": "4.1.17",
     "@jest/globals": "30.5.2",
     "@sidvind/build-scripts": "1.0.0",
@@ -73,7 +73,7 @@
     "@typescript/native": "npm:typescript@7.0.2",
     "dts-bundle-generator": "9.5.1",
     "esbuild": "0.28.2",
-    "html-validate": "11.16.4",
+    "html-validate": "11.17.0",
     "npm-run-all2": "9.0.4",
     "typescript": "npm:@typescript/typescript6@6.0.2"
   },
