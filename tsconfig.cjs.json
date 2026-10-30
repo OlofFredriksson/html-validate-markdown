@@ -1,7 +1,8 @@
+/* This file is managed by "@html-validate/plugin-template". Changes will be overwritten */
+
 {
-  "extends": "./tsconfig.json",
+  "extends": ["./tsconfig.json"],
   "compilerOptions": {
-    "module": "node16",
-    "moduleResolution": "node16"
+    "rootDirs": ["./src", "./tests"]
   }
 }

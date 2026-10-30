@@ -1,4 +1,7 @@
 # EditorConfig: http://EditorConfig.org
+#
+# This file is managed by "@html-validate/plugin-template".
+# Changes will be overwritten.
 
 root = true
 
@@ -9,5 +12,9 @@ indent_style = tab
 charset = utf-8
 
 [*.json]
+indent_style = space
+indent_size = 2
+
+[*.yml]
 indent_style = space
 indent_size = 2

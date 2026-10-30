@@ -9,7 +9,6 @@ import { parseInfostring } from "./parse-infostring";
 
 const range = peerDependencies["html-validate"];
 
-/* eslint-disable-next-line unicorn/no-top-level-side-effects -- recommended solution */
 compatibilityCheck(name, range);
 
 function findLocation(source: string, index: number, preamble: number): [number, number] {

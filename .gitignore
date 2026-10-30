@@ -1,8 +1,9 @@
-# Remember to keep in sync with .npmignore
+# This file is managed by "@html-validate/plugin-template".
+# Changes will be overwritten.
 
-/dist/
-/node_modules/
 *.tgz
+.eslintcache
+dist/
 coverage/
-test-results
-.jest-cache
+node_modules/
+temp/

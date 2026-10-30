@@ -5,25 +5,29 @@ exports[`should find errors in "markdown.md" 1`] = `[]`;
 exports[`should find errors in "multiline-invalid.md" 1`] = `
 [
   {
-    "errorCount": 5,
+    "errorCount": 4,
     "filePath": "test/multiline-invalid.md",
     "fixableErrorCount": 0,
     "fixableWarningCount": 0,
     "messages": [
       {
-        "column": 6,
+        "column": 4,
+        "context": {
+          "tagName": "button",
+          "textContent": "accessible",
+        },
         "line": 5,
-        "message": "Unclosed element '<button>'",
-        "offset": 86,
+        "message": "<button> must have accessible text",
+        "offset": 84,
         "related": [],
-        "ruleId": "close-order",
-        "ruleUrl": "https://html-validate.org/rules/close-order.html",
+        "ruleId": "text-content",
+        "ruleUrl": "https://html-validate.org/rules/text-content.html",
         "selector": "div > button",
         "severity": 2,
         "size": 6,
       },
       {
-        "column": 19,
+        "column": 17,
         "context": {
           "allowed": {
             "enum": [
@@ -38,7 +42,7 @@ exports[`should find errors in "multiline-invalid.md" 1`] = `
         },
         "line": 5,
         "message": "Attribute "type" has invalid value "invalid"",
-        "offset": 99,
+        "offset": 97,
         "related": [],
         "ruleId": "attribute-allowed-values",
         "ruleUrl": "https://html-validate.org/rules/attribute-allowed-values.html",
@@ -47,22 +51,10 @@ exports[`should find errors in "multiline-invalid.md" 1`] = `
         "size": 7,
       },
       {
-        "column": 6,
-        "line": 7,
-        "message": "End tag '</div>' seen but there were open elements",
-        "offset": 150,
-        "related": [],
-        "ruleId": "close-order",
-        "ruleUrl": "https://html-validate.org/rules/close-order.html",
-        "selector": null,
-        "severity": 2,
-        "size": 4,
-      },
-      {
         "column": 4,
-        "line": 13,
+        "line": 11,
         "message": "<button> is missing recommended "type" attribute",
-        "offset": 188,
+        "offset": 145,
         "related": [],
         "ruleId": "no-implicit-button-type",
         "ruleUrl": "https://html-validate.org/rules/no-implicit-button-type.html",
@@ -77,9 +69,9 @@ exports[`should find errors in "multiline-invalid.md" 1`] = `
           "kind": "content",
           "parent": "<button>",
         },
-        "line": 13,
+        "line": 11,
         "message": "<div> element is not permitted as content under <button>",
-        "offset": 196,
+        "offset": 153,
         "related": [],
         "ruleId": "element-permitted-content",
         "ruleUrl": "https://html-validate.org/rules/element-permitted-content.html",
@@ -92,10 +84,8 @@ exports[`should find errors in "multiline-invalid.md" 1`] = `
 
 \`\`\`html
 <div something="row">
-    <button type="invalid">
-        Button not correctly closed
-    </div>
-</button>
+  <button type="invalid"></button>
+</div>
 \`\`\`
 
 \`\`\`html
