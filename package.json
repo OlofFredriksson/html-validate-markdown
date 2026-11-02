@@ -77,7 +77,7 @@
     "@forsakringskassan/eslint-config-typescript": "15.13.2",
     "@html-validate/commitlint-config": "4.3.3",
     "@html-validate/jest-config": "3.18.3",
-    "@html-validate/plugin-template": "1.1.52",
+    "@html-validate/plugin-template": "1.1.53",
     "@html-validate/prettier-config": "4.1.17",
     "@html-validate/release-scripts": "7.6.17",
     "@jest/globals": "30.5.2",
@@ -106,10 +106,10 @@
     "node": "^22.20 || ^24.8 || >= 26"
   },
   "cloneman": {
-    "version": "1.1.52",
+    "version": "1.1.53",
     "template": "@html-validate/plugin-template",
     "parameters": {},
-    "fileHash": "90488f28cb823eaaaaa36586554329e4f1ebc0e9e90e864e2273184f21472e49"
+    "fileHash": "8e86362d7f7c1477b9b5208b62f46dfab4c6c93fa06b2561dcffdaf0cf41ed32"
   },
   "externalDependencies": [
     "@html-validate/plugin-utils"
