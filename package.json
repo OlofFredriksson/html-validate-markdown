@@ -77,7 +77,7 @@
     "@forsakringskassan/eslint-config-typescript": "15.13.2",
     "@html-validate/commitlint-config": "4.3.3",
     "@html-validate/jest-config": "3.18.3",
-    "@html-validate/plugin-template": "1.1.53",
+    "@html-validate/plugin-template": "1.2.3",
     "@html-validate/prettier-config": "4.1.17",
     "@html-validate/release-scripts": "7.6.17",
     "@jest/globals": "30.5.2",
