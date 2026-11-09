@@ -90,7 +90,7 @@
     "cloneman": "1.29.0",
     "dts-bundle-generator": "9.5.1",
     "esbuild": "0.28.2",
-    "html-validate": "11.19.0",
+    "html-validate": "11.21.0",
     "husky": "9.1.7",
     "jest": "30.5.2",
     "jest-environment-jsdom": "30.5.2",
