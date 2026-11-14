@@ -74,7 +74,7 @@
     "@forsakringskassan/eslint-config": "15.13.12",
     "@forsakringskassan/eslint-config-cli": "15.13.6",
     "@forsakringskassan/eslint-config-jest": "15.13.0",
-    "@forsakringskassan/eslint-config-typescript": "15.13.2",
+    "@forsakringskassan/eslint-config-typescript": "15.13.15",
     "@html-validate/commitlint-config": "4.3.3",
     "@html-validate/jest-config": "3.18.3",
     "@html-validate/plugin-template": "1.1.53",
